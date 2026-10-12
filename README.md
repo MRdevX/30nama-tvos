@@ -96,6 +96,10 @@ Tests            tests for 30nama/Core
 - می‌خواهید کد بنویسید؟ فهرست کارهای باز در [TASKS.md](TASKS.md) است. اگر کار بزرگی در نظر دارید، قبلش در یک Issue بگویید تا دوباره‌کاری نشود.
 - قبل از فرستادن Pull Request دستور `swift test` را اجرا کنید. قاعده‌های کد در [AGENTS.md](AGENTS.md) آمده است.
 
+## مجوز
+
+کد این پروژه با مجوز [MIT](LICENSE) منتشر شده است. نام و لوگوی ۳۰نما، قلم وزیرمتن و بخش‌هایی که از پروژه‌های دیگر آمده‌اند مجوز خودشان را دارند که در [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) آمده است.
+
 ## اعتبار
 
 - این برنامه از روی کلاینت تایزن [msharifi99/30nama-tizenos](https://github.com/msharifi99/30nama-tizenos) نوشتهٔ Rebin Sharifi ساخته شده است: همان API، با برنامه‌ای تازه. منطق ردیف‌های ترند برگردان `tmdb.js` همان پروژه است. متن مجوز آن در [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) آمده است.
