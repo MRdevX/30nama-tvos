@@ -1,14 +1,16 @@
 // Draws the layered tvOS app icon and the Top Shelf images into the asset catalog.
 // Run from the project root:  swift Tools/make-icons.swift
 import AppKit
-import CoreText
 
 let root = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
 let catalog = root.appendingPathComponent("30nama/Resources/Assets.xcassets/App Icon & Top Shelf Image.brandassets")
-CTFontManagerRegisterFontsForURL(root.appendingPathComponent("30nama/Resources/Fonts/Vazirmatn-ExtraBold.ttf") as CFURL, .process, nil)
+
+// 30nama's own logo, cube and wordmark, enlarged from the files on 30nama.com (see THIRD-PARTY-NOTICES.md).
+let logo = NSBitmapImageRep(data: try! Data(contentsOf: root.appendingPathComponent("Tools/30nama-logo.png")))!
+/// Where the cube ends and the wordmark begins, as a fraction of the logo's width.
+let logoSplit: CGFloat = 0.29
 
 let accent = NSColor(srgbRed: 0xF0 / 255, green: 0x45 / 255, blue: 0x4A / 255, alpha: 1)
-let ink = NSColor(srgbRed: 0xF4 / 255, green: 0xF1 / 255, blue: 0xEA / 255, alpha: 1)
 let bgTop = NSColor(srgbRed: 0x16 / 255, green: 0x19 / 255, blue: 0x22 / 255, alpha: 1)
 let bgBottom = NSColor(srgbRed: 0x07 / 255, green: 0x08 / 255, blue: 0x0B / 255, alpha: 1)
 
@@ -26,23 +28,27 @@ func render(_ width: Int, _ height: Int, _ layer: Layer) -> Data {
 
     if layer == .back || layer == .flat {
         NSGradient(starting: bgBottom, ending: bgTop)!.draw(in: rect, angle: 90)
-        // Projector-lamp bloom behind the wordmark.
+        // Projector-lamp bloom behind the logo.
         let bloom = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [accent.withAlphaComponent(0.42).cgColor, accent.withAlphaComponent(0).cgColor] as CFArray, locations: [0, 1])!
         ctx.drawRadialGradient(bloom, startCenter: CGPoint(x: w / 2, y: h * 0.5), startRadius: 0, endCenter: CGPoint(x: w / 2, y: h * 0.5), endRadius: h * 0.78, options: [])
     }
-    let size = h * 0.30
-    let font = NSFont(name: "Vazirmatn-ExtraBold", size: size) ?? .systemFont(ofSize: size, weight: .heavy)
-    let text = NSMutableAttributedString(string: "30", attributes: [.font: font, .foregroundColor: accent])
-    text.append(NSAttributedString(string: "nama", attributes: [.font: font, .foregroundColor: ink]))
-    let bounds = text.boundingRect(with: rect.size, options: [.usesLineFragmentOrigin])
-    let origin = CGPoint(x: (w - bounds.width) / 2, y: (h - bounds.height) / 2 + h * 0.03)
+    // The logo sits in the middle. In the layered icon the cube floats above the wordmark.
+    NSGraphicsContext.current!.imageInterpolation = .high
+    let logoHeight = h * 0.36
+    let logoWidth = logoHeight * CGFloat(logo.pixelsWide) / CGFloat(logo.pixelsHigh)
+    let box = CGRect(x: (w - logoWidth) / 2, y: (h - logoHeight) / 2, width: logoWidth, height: logoHeight)
+    let split = box.minX + logoWidth * logoSplit
     if layer == .front || layer == .flat {
-        text.draw(at: origin)
+        ctx.saveGState()
+        ctx.clip(to: CGRect(x: 0, y: 0, width: split, height: h))
+        logo.draw(in: box, from: .zero, operation: .sourceOver, fraction: 1, respectFlipped: false, hints: nil)
+        ctx.restoreGState()
     }
     if layer == .middle || layer == .flat {
-        accent.setFill()
-        let lineWidth = bounds.width * 0.42
-        CGRect(x: (w - lineWidth) / 2, y: origin.y - h * 0.045, width: lineWidth, height: max(2, h * 0.012)).fill()
+        ctx.saveGState()
+        ctx.clip(to: CGRect(x: split, y: 0, width: w - split, height: h))
+        logo.draw(in: box, from: .zero, operation: .sourceOver, fraction: 1, respectFlipped: false, hints: nil)
+        ctx.restoreGState()
     }
     NSGraphicsContext.restoreGraphicsState()
     return rep.representation(using: .png, properties: [:])!

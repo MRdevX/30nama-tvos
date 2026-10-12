@@ -4,6 +4,8 @@
 
 برنامه‌ای بومی برای tvOS که کاتالوگ [30nama.com](https://30nama.com) را روی Apple TV می‌آورد. با SwiftUI نوشته شده است.
 
+این برنامه بر پایهٔ کلاینت تایزن [msharifi99/30nama-tizenos](https://github.com/msharifi99/30nama-tizenos) ساخته شده است. جزئیات در بخش [اعتبار](#اعتبار).
+
 > **این برنامه رسمی نیست.** ساختهٔ ۳۰نما نیست، وابستگی یا ارتباطی با ۳۰نما ندارد و ۳۰نما آن را تأیید نکرده است. برای پخش باید اشتراک خودتان را در ۳۰نما داشته باشید. بدون ورود فقط می‌شود فهرست‌ها را دید.
 
 > **پروژه در حال توسعه است** و مرتب به‌روز می‌شود، پس ممکن است بعضی بخش‌ها ناقص باشند یا تغییر کنند. اگر می‌خواهید همکاری کنید، بخش [همکاری](#همکاری) را ببینید.
@@ -80,7 +82,7 @@ swift test
 30nama/Screens   login, home, details, catalogue grid, browse, search, profile, settings
 30nama/Player    AVKit player, subtitles, menus
 Config           Info.plist additions, entitlements, build settings
-Tools            make-icons.swift (regenerates the app icon and Top Shelf images)
+Tools            make-icons.swift (regenerates the app icon and Top Shelf images from 30nama-logo.png)
 Tests            tests for 30nama/Core
 ```
 
@@ -99,6 +101,7 @@ Tests            tests for 30nama/Core
 - این برنامه از روی کلاینت تایزن [msharifi99/30nama-tizenos](https://github.com/msharifi99/30nama-tizenos) نوشتهٔ Rebin Sharifi ساخته شده است: همان API، با برنامه‌ای تازه. منطق ردیف‌های ترند برگردان `tmdb.js` همان پروژه است. متن مجوز آن در [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) آمده است.
 - قلم [وزیرمتن](https://github.com/rastikerdar/vazirmatn) با مجوز SIL Open Font License منتشر شده است.
 - این برنامه از API سایت TMDB استفاده می‌کند ولی TMDB آن را تأیید یا گواهی نکرده است.
+- نام و لوگوی ۳۰نما متعلق به ۳۰نما است. لوگو روی آیکون برنامه فقط برای این است که معلوم باشد برنامه به کدام سرویس وصل می‌شود، و نشانهٔ تأیید یا همکاری ۳۰نما نیست.
 - پوسترها و تصویرهایی که در برنامه و در این صفحه می‌بینید متعلق به صاحبان همان آثار است.
 
 </div>
