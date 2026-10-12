@@ -3,9 +3,14 @@ import CloudKit
 /// The ratings as one record in the user's private iCloud database.
 actor CloudRatings: RatingCloud {
     private let container = CKContainer.default()
-    private let recordID = CKRecord.ID(recordName: "ratings")
+    private let recordID: CKRecord.ID
     /// The record as last seen, which a save has to be built on for iCloud to accept it.
     private var seen: CKRecord?
+
+    /// - Parameter recordName: the record to keep the book in. Only a trial run needs one of its own.
+    init(recordName: String = "ratings") {
+        recordID = CKRecord.ID(recordName: recordName)
+    }
 
     func load() async throws -> (data: Data, tag: String)? {
         guard try await container.accountStatus() == .available else { throw RatingCloudError.unavailable }
