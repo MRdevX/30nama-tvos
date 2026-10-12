@@ -56,6 +56,9 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
     private var blurAnimator: UIViewPropertyAnimator?
     private var activeObserver: NSObjectProtocol?
     private var subtitleBottom: NSLayoutConstraint?
+    /// What is covering the bottom of the picture at the moment.
+    private var barShowing = false
+    private var episodesShowing = false
     private var shownCue = ""
     /// Which contextual button is up ("intro", "recap", "next" or none), to avoid resetting it every tick.
     private var actionKey = ""
@@ -256,6 +259,11 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
                 playing: index
             ) { [weak self] chosen in
                 self?.start(chosen)
+            } shown: { [weak self] showing in
+                guard let self, episodesShowing != showing else { return }
+                episodesShowing = showing
+                subtitleBottom?.constant = subtitleLift
+                UIView.animate(withDuration: 0.3) { self.subtitlePlate.superview?.layoutIfNeeded() }
             }
             let host = UIHostingController(rootView: strip
                 .environment(\.loc, loc)
@@ -417,6 +425,10 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         ])
     }
 
+    /// How far subtitles sit above the bottom edge: clear of the episodes panel or the transport
+    /// bar while either is showing.
+    private var subtitleLift: CGFloat { episodesShowing ? -470 : (barShowing ? -250 : -70) }
+
     /// Lifts subtitles clear of the transport bar while it is showing.
     nonisolated func playerViewController(
         _ playerViewController: AVPlayerViewController,
@@ -424,7 +436,10 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         with coordinator: AVPlayerViewControllerAnimationCoordinator
     ) {
         MainActor.assumeIsolated {
-            subtitleBottom?.constant = visible ? -250 : -70
+            barShowing = visible
+            // The panels live in the bar, so they are gone when it is.
+            if !visible { episodesShowing = false }
+            subtitleBottom?.constant = subtitleLift
             let overlay = playerViewController.contentOverlayView
             coordinator.addCoordinatedAnimations({ overlay?.layoutIfNeeded() }, completion: nil)
         }
@@ -442,6 +457,8 @@ private struct EpisodeStrip: View {
     let entries: [Entry]
     let playing: Int
     let select: (Int) -> Void
+    /// Told when the strip comes on screen and when it leaves.
+    let shown: (Bool) -> Void
 
     var body: some View {
         ScrollViewReader { proxy in
@@ -460,7 +477,11 @@ private struct EpisodeStrip: View {
             }
             .scrollIndicators(.hidden)
             .scrollClipDisabled()
-            .onAppear { proxy.scrollTo(playing, anchor: .center) }
+            .onAppear {
+                proxy.scrollTo(playing, anchor: .center)
+                shown(true)
+            }
+            .onDisappear { shown(false) }
         }
     }
 }
