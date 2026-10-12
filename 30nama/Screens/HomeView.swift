@@ -294,10 +294,14 @@ struct HomeView: View {
                 .frame(height: Layout.headerHeight)
                 .padding(.leading, Theme.edge)
             ScrollView(.horizontal) {
-                LazyHStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) {
-                    ForEach(Array(section.posts.enumerated()), id: \.element.id) { index, post in
-                        card(post, in: section, rank: index + 1)
-                            .focused($focus, equals: .card(row: section.key, id: post.id))
+                Group {
+                    if section.key.hasPrefix("tm_") {
+                        // A lazy stack added after the page is up has made none of its cards by the
+                        // time focus arrives, and focus lands on the empty row instead of a card.
+                        // The trending rows arrive late and are short, so they are built whole.
+                        HStack(alignment: .top, spacing: 24) { cards(in: section) }
+                    } else {
+                        LazyHStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) { cards(in: section) }
                     }
                 }
                 .padding(.horizontal, Theme.edge)
@@ -308,6 +312,13 @@ struct HomeView: View {
         .opacity(above ? 0.45 : 1)
         .animation(.easeOut(duration: 0.3), value: above)
         .focusSection()
+    }
+
+    private func cards(in section: HomeSection) -> some View {
+        ForEach(Array(section.posts.enumerated()), id: \.element.id) { index, post in
+            card(post, in: section, rank: index + 1)
+                .focused($focus, equals: .card(row: section.key, id: post.id))
+        }
     }
 
     @ViewBuilder

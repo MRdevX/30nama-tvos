@@ -107,6 +107,16 @@ struct SettingsView: View {
                 }
                 .buttonStyle(RowButtonStyle())
             }
+            fact(loc(.cloudRatings), loc(cloudLabel))
+        }
+    }
+
+    private var cloudLabel: S {
+        switch app.cloud {
+        case .idle, .syncing: return .cloudSyncing
+        case .synced: return .cloudSynced
+        case .signedOut: return .cloudSignedOut
+        case .failed: return .cloudFailed
         }
     }
 

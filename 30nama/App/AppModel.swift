@@ -169,9 +169,13 @@ final class AppModel {
     private(set) var watchVersion = 0
     var playback: PlaybackRequest?
     private(set) var toast: String?
-    /// The user's own ratings. Kept on the device for now; tvOS gives an app about 500 KB of
-    /// storage that survives, which is room for well over a thousand of these.
+    /// The user's own ratings. The copy on the device is what the app works from; iCloud keeps
+    /// another, so they follow the user to other Apple TVs and survive tvOS clearing the app's storage.
     private(set) var ratings = UserDefaults.standard.data(forKey: "ratings").flatMap(RatingBook.init(data:)) ?? RatingBook()
+    /// How the last exchange with iCloud went.
+    private(set) var cloud = CloudState.idle
+
+    enum CloudState: Equatable { case idle, syncing, synced, signedOut, failed }
 
     let api: APIClient
     /// TMDB's trending rows. Nil when no TMDB token was built in.
@@ -180,6 +184,9 @@ final class AppModel {
     @ObservationIgnored private var homeCache: (feed: HomeFeed, at: Date, lang: Lang)?
     @ObservationIgnored private var menuCache: (menu: Menu, lang: Lang)?
     @ObservationIgnored private var toastTask: Task<Void, Never>?
+    @ObservationIgnored private let cloudRatings = CloudRatings()
+    @ObservationIgnored private var cloudTask: Task<Void, Never>?
+    @ObservationIgnored private var lastCloudSync = Date.distantPast
 
     var loc: Loc { Loc(lang: settings.lang) }
     var isLoggedIn: Bool { user != nil }
@@ -187,9 +194,16 @@ final class AppModel {
     init() {
         let api = APIClient()
         self.api = api
+        var token = Bundle.main.object(forInfoDictionaryKey: "TMDBToken") as? String ?? ""
+        var transport: Transport?
+        var cache = "trending.json"
+        #if DEBUG
+        if let mock = DemoTrending.transport { (token, transport, cache) = ("mock", mock, "trending-mock.json") }
+        #endif
         trending = Trending(
-            token: Bundle.main.object(forInfoDictionaryKey: "TMDBToken") as? String ?? "",
-            cacheFile: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent("trending.json"),
+            token: token,
+            cacheFile: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent(cache),
+            transport: transport,
             search: { query in
                 try await api.get("search", ["query": query, "streamonly": "0", "page": "1"], background: true)
             })
@@ -217,6 +231,7 @@ final class AppModel {
             Task { await refreshProfile() }
         }
         phase = (user != nil || settings.guest) ? .main : .login
+        syncRatings()
     }
 
     /// The saved profile can be stale (renewed subscription), so refresh it once per launch.
@@ -337,6 +352,36 @@ final class AppModel {
     func rate(_ post: Post, stars: Double?) {
         ratings.rate(post, stars: stars)
         UserDefaults.standard.set(ratings.encoded(), forKey: "ratings")
+        // Stars are often nudged a few times in a row: wait for the hand to rest before sending.
+        syncRatings(after: 2)
+    }
+
+    /// Exchanges ratings with iCloud: what was rated here goes up, what was rated elsewhere comes down.
+    /// - Parameter fresh: skip the exchange if one finished less than this many seconds ago.
+    func syncRatings(after delay: TimeInterval = 0, unlessFresherThan fresh: TimeInterval = 0) {
+        guard Date().timeIntervalSince(lastCloudSync) >= fresh else { return }
+        cloudTask?.cancel()
+        cloudTask = Task { [weak self, cloudRatings] in
+            if delay > 0 { try? await Task.sleep(for: .seconds(delay)) }
+            guard let self, !Task.isCancelled else { return }
+            if cloud != .synced { cloud = .syncing }
+            do {
+                let merged = try await RatingSync.run(local: ratings, cloud: cloudRatings)
+                // Anything rated while that was under way is in `ratings` but not in `merged`.
+                let combined = ratings.merged(with: merged)
+                if combined != ratings {
+                    ratings = combined
+                    UserDefaults.standard.set(combined.encoded(), forKey: "ratings")
+                }
+                lastCloudSync = Date()
+                cloud = .synced
+                if combined != merged { syncRatings(after: 2) }
+            } catch RatingCloudError.unavailable {
+                cloud = .signedOut
+            } catch {
+                if !Task.isCancelled { cloud = .failed }
+            }
+        }
     }
 
     // MARK: Playback and messages

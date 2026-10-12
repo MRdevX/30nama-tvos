@@ -9,6 +9,7 @@ enum S: String, CaseIterable {
     case loading, error, tryAgain, retry, noConnection
     case continueWatching, newReleases, suggested, top10, featured
     case trendingWeek, newSeries, popularMovies, tmdb, tmdbOn, tmdbOff, tmdbCredit
+    case cloudRatings, cloudSynced, cloudSyncing, cloudSignedOut, cloudFailed
     case play, resume, details, episodes, season, seasonsCount, episode, nowPlaying, cast
     case persianSub, minLeft, min, free, soon
     case loginToStream, loginToWatch, noStream, comingSoonNote
@@ -90,6 +91,8 @@ struct Loc: Equatable {
         .trendingWeek: "Trending this week", .newSeries: "New & returning series",
         .popularMovies: "Popular movies now", .tmdb: "TMDB trending rows", .tmdbOn: "On", .tmdbOff: "Not set up",
         .tmdbCredit: "Trending lists come from TMDB. This app is not endorsed or certified by TMDB.",
+        .cloudRatings: "Ratings in iCloud", .cloudSynced: "Up to date", .cloudSyncing: "Syncing…",
+        .cloudSignedOut: "Not signed in to iCloud", .cloudFailed: "Could not sync",
         .play: "Play", .resume: "Resume", .details: "Details", .episodes: "Episodes", .season: "Season",
         .seasonsCount: "seasons", .episode: "Episode", .nowPlaying: "Now playing", .cast: "Cast",
         .persianSub: "Persian subtitles", .minLeft: "min left", .min: "min", .free: "FREE", .soon: "SOON",
@@ -140,6 +143,8 @@ struct Loc: Equatable {
         .trendingWeek: "پرطرفدار این هفته", .newSeries: "سریال‌های جدید و ادامه‌دار",
         .popularMovies: "فیلم‌های محبوب امروز", .tmdb: "ردیف‌های ترند TMDB", .tmdbOn: "فعال", .tmdbOff: "تنظیم نشده",
         .tmdbCredit: "فهرست‌های ترند از TMDB می‌آید. این برنامه مورد تأیید TMDB نیست.",
+        .cloudRatings: "ریت‌ها در iCloud", .cloudSynced: "همگام", .cloudSyncing: "در حال همگام‌سازی…",
+        .cloudSignedOut: "وارد iCloud نشده‌اید", .cloudFailed: "همگام نشد",
         .play: "پخش", .resume: "ادامه", .details: "جزئیات", .episodes: "قسمت‌ها", .season: "فصل",
         .seasonsCount: "فصل", .episode: "قسمت", .nowPlaying: "در حال پخش", .cast: "بازیگران",
         .persianSub: "زیرنویس فارسی", .minLeft: "دقیقه مانده", .min: "دقیقه", .free: "رایگان", .soon: "به‌زودی",

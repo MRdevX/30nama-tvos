@@ -106,6 +106,15 @@ final class TrendingTests: XCTestCase {
         XCTAssertNil(TitleMatch.bestPost(in: posts([post(7, "Dunkirk", year: 2021)]), for: dune))
     }
 
+    func testATitleBuriedUnderItsNamesakesIsFoundByItsYear() async throws {
+        let net = stockedCatalogue()
+        net.shelves["Film N3x"] = [post(900, "Film N3x", year: 2001), post(901, "Film N3x", year: 1990)]
+        net.shelves["Film N3x 2024"] = [post(103, "Film N3x")]
+        let trending = try XCTUnwrap(Trending(token: "t", transport: net.transport, search: net.search))
+        let row = await trending.row(.trend)
+        XCTAssertEqual(row.map(\.id), [101, 102, 103, 104, 105, 106])
+    }
+
     func testBestPostPrefersWhatCanBeStreamed() {
         let dune = item(tmdb(1, "Dune", year: 2021), kind: .movie)
         let found = TitleMatch.bestPost(in: posts([post(1, "Dune", year: 2021, stream: false), post(2, "Dune", year: 2021)]), for: dune)
@@ -115,9 +124,9 @@ final class TrendingTests: XCTestCase {
     func testBestPostMatchesTheOriginalTitle() {
         let heist = item(tmdb(1, "Money Heist", year: 2017, tv: true, original: "La casa de papel"), kind: .tv)
         XCTAssertEqual(TitleMatch.bestPost(in: posts([post(9, "La Casa de Papel", year: 2017, series: true)]), for: heist)?.id, 9)
-        XCTAssertEqual(TitleMatch.queries(for: heist), ["Money Heist", "La casa de papel"])
+        XCTAssertEqual(TitleMatch.queries(for: heist), ["Money Heist", "La casa de papel", "Money Heist 2017"])
         let squid = item(tmdb(2, "Squid Game", tv: true, original: "오징어 게임"), kind: .tv)
-        XCTAssertEqual(TitleMatch.queries(for: squid), ["Squid Game"], "an original title 30nama cannot be searched by is left out")
+        XCTAssertEqual(TitleMatch.queries(for: squid), ["Squid Game", "Squid Game 2024"], "an original title 30nama cannot be searched by is left out")
     }
 
     func testBestPostAgainstALiveSearchResponse() throws {
@@ -211,19 +220,19 @@ final class TrendingTests: XCTestCase {
         let first = try await launch().row(.trend)
         XCTAssertEqual(first.count, 6)
         XCTAssertEqual(net.tmdbRequests.count, 1)
-        XCTAssertEqual(net.searches.count, 7)
+        XCTAssertEqual(net.searches.count, 8, "the missing title is also tried with its year")
 
         clock.advance(hours: 5)
         let second = try await launch().row(.trend)
         XCTAssertEqual(second.map(\.id), first.map(\.id))
         XCTAssertEqual(net.tmdbRequests.count, 1, "the list is good for six hours")
-        XCTAssertEqual(net.searches.count, 7, "found and missing titles are both remembered")
+        XCTAssertEqual(net.searches.count, 8, "found and missing titles are both remembered")
 
         clock.advance(hours: 20)
         _ = try await launch().row(.trend)
         XCTAssertEqual(net.tmdbRequests.count, 2, "the list is asked for again")
-        XCTAssertEqual(net.searches.count, 8)
-        XCTAssertEqual(net.searches.last, "Film N7x", "a missing title is looked for again after a day")
+        XCTAssertEqual(net.searches.count, 10)
+        XCTAssertEqual(net.searches.last, "Film N7x 2024", "a missing title is looked for again after a day")
     }
 
     func testAFailedSearchIsNotRememberedAsMissing() async throws {

@@ -15,6 +15,8 @@ final class RatingsTests: XCTestCase {
         return Post(JSON(json))!
     }
 
+    private func at(_ seconds: TimeInterval) -> Date { Date(timeIntervalSince1970: seconds) }
+
     func testRateChangeAndRemove() {
         var book = RatingBook()
         book.rate(post(1, ["drama"]), stars: 4.3)
@@ -39,6 +41,49 @@ final class RatingsTests: XCTestCase {
         XCTAssertEqual(restored, book)
         XCTAssertEqual(restored.newestFirst.map(\.postID), [2, 1])
         XCTAssertNil(RatingBook(data: Data("not json".utf8)))
+    }
+
+    func testBooksSavedBeforeRemovalsWereRecordedStillOpen() throws {
+        let legacy = Data(#"[{"postID":3,"stars":4,"date":1000,"isSeries":false,"isAnime":false,"genres":[]}]"#.utf8)
+        let book = try XCTUnwrap(RatingBook(data: legacy))
+        XCTAssertEqual(book.stars(for: 3), 4)
+        XCTAssertTrue(book.removed.isEmpty)
+    }
+
+    func testRemovalIsRememberedUntilTheTitleIsRatedAgain() throws {
+        var book = RatingBook()
+        book.rate(post(1, ["drama"]), stars: nil, date: at(5))
+        XCTAssertTrue(book.removed.isEmpty, "nothing was rated, so nothing was removed")
+        book.rate(post(1, ["drama"]), stars: 4, date: at(10))
+        book.rate(post(1, ["drama"]), stars: nil, date: at(20))
+        XCTAssertEqual(book.removed, [1: at(20)])
+        XCTAssertEqual(try XCTUnwrap(RatingBook(data: book.encoded())), book, "removals survive encoding")
+        book.rate(post(1, ["drama"]), stars: 3, date: at(30))
+        XCTAssertTrue(book.removed.isEmpty)
+    }
+
+    func testMergeKeepsWhateverHappenedLast() {
+        var here = RatingBook(), there = RatingBook()
+        here.rate(post(1, ["drama"]), stars: 2, date: at(10))      // rated on both, later there
+        there.rate(post(1, ["drama"]), stars: 5, date: at(20))
+        here.rate(post(2, ["drama"]), stars: 4, date: at(10))      // only here
+        there.rate(post(3, ["drama"]), stars: 3, date: at(10))     // only there
+        here.rate(post(4, ["drama"]), stars: 4, date: at(10))      // rated here, removed there afterwards
+        there.rate(post(4, ["drama"]), stars: 4, date: at(10))
+        there.rate(post(4, ["drama"]), stars: nil, date: at(30))
+        there.rate(post(5, ["drama"]), stars: 1, date: at(10))     // removed there, rated again here afterwards
+        there.rate(post(5, ["drama"]), stars: nil, date: at(20))
+        here.rate(post(5, ["drama"]), stars: 4.5, date: at(40))
+
+        let merged = here.merged(with: there)
+        XCTAssertEqual(merged.stars(for: 1), 5)
+        XCTAssertEqual(merged.stars(for: 2), 4)
+        XCTAssertEqual(merged.stars(for: 3), 3)
+        XCTAssertNil(merged.stars(for: 4), "the removal came after the rating")
+        XCTAssertEqual(merged.removed, [4: at(30)])
+        XCTAssertEqual(merged.stars(for: 5), 4.5, "the rating came after the removal")
+        XCTAssertEqual(there.merged(with: here), merged, "both devices arrive at the same book")
+        XCTAssertEqual(merged.merged(with: here), merged)
     }
 
     func testRatedTitleCanBeShownAgain() throws {

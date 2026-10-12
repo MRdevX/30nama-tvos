@@ -139,13 +139,16 @@ enum TitleMatch {
         return a.hasPrefix(b + " ") || b.hasPrefix(a + " ") ? max(dice, 0.82) : dice
     }
 
-    /// What to search 30nama for: the title, then the original one when it differs and is in Latin script.
+    /// What to search 30nama for: the title, then the original one when it differs and is in Latin
+    /// script, then the title with its year, the way 30nama itself writes it. That last one finds
+    /// titles with a common name ("Animals") that the plain search buries under their namesakes.
     static func queries(for item: TMDBItem) -> [String] {
         var out = [item.title]
         if let original = item.originalTitle, normalize(original) != normalize(item.title),
            original.range(of: "[a-zA-Z]", options: .regularExpression) != nil {
             out.append(original)
         }
+        if let year = item.year { out.append("\(item.title) \(year)") }
         return out
     }
 

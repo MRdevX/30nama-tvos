@@ -49,6 +49,7 @@ extension View {
 
 struct RootView: View {
     @Environment(AppModel.self) private var app
+    @Environment(\.scenePhase) private var scenePhase
     /// The opening title has run its course.
     @State private var introPlayed = false
     /// The opening title has finished leaving and is out of the hierarchy.
@@ -105,6 +106,10 @@ struct RootView: View {
                 .environment(app)
         }
         .task { await app.boot() }
+        .onChange(of: scenePhase) { _, phase in
+            // Coming back to the app: pick up what was rated on another Apple TV meanwhile.
+            if phase == .active, app.phase == .main { app.syncRatings(unlessFresherThan: 60) }
+        }
         .task {
             // The opening title runs its course once; after that it only waits on the network.
             try? await Task.sleep(for: .seconds(2.3))

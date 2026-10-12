@@ -69,22 +69,39 @@ struct Rating: Codable, Equatable, Identifiable {
 /// Everything the user has rated, and what that says about their taste.
 struct RatingBook: Equatable {
     private(set) var ratings: [Int: Rating] = [:]
+    /// Titles whose rating was taken away, and when. Kept so that another device, which still has
+    /// the rating, learns that it is gone instead of bringing it back.
+    private(set) var removed: [Int: Date] = [:]
 
     init(_ ratings: [Rating] = []) {
         for r in ratings { self.ratings[r.postID] = r }
     }
 
+    private struct Stored: Codable {
+        var ratings: [Rating]
+        var removed: [String: Date]
+    }
+
+    /// Reads a stored book. Books saved before removals were recorded are a bare list of ratings.
     init?(data: Data) {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
-        guard let list = try? decoder.decode([Rating].self, from: data) else { return nil }
-        self.init(list)
+        if let stored = try? decoder.decode(Stored.self, from: data) {
+            self.init(stored.ratings)
+            for (id, date) in stored.removed { if let id = Int(id) { removed[id] = date } }
+        } else if let list = try? decoder.decode([Rating].self, from: data) {
+            self.init(list)
+        } else {
+            return nil
+        }
     }
 
     func encoded() -> Data {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .secondsSince1970
-        return (try? encoder.encode(newestFirst)) ?? Data()
+        encoder.outputFormatting = .sortedKeys
+        let stored = Stored(ratings: newestFirst, removed: Dictionary(uniqueKeysWithValues: removed.map { (String($0.key), $0.value) }))
+        return (try? encoder.encode(stored)) ?? Data()
     }
 
     var count: Int { ratings.count }
@@ -98,9 +115,26 @@ struct RatingBook: Equatable {
     mutating func rate(_ post: Post, stars: Double?, date: Date = Date()) {
         if let stars {
             ratings[post.id] = Rating(post: post, stars: stars, date: date)
-        } else {
-            ratings[post.id] = nil
+            removed[post.id] = nil
+        } else if ratings.removeValue(forKey: post.id) != nil {
+            removed[post.id] = date
         }
+    }
+
+    /// This book and another device's, brought together: for every title, whatever happened last
+    /// stands, be it a rating or its removal. Either book can be the receiver; the result is the same.
+    func merged(with other: RatingBook) -> RatingBook {
+        var out = RatingBook()
+        for id in Set(ratings.keys).union(other.ratings.keys).union(removed.keys).union(other.removed.keys) {
+            let rating = [ratings[id], other.ratings[id]].compactMap { $0 }.max { ($0.date, $0.stars) < ($1.date, $1.stars) }
+            let removal = [removed[id], other.removed[id]].compactMap { $0 }.max()
+            if let rating, rating.date >= removal ?? .distantPast {
+                out.ratings[id] = rating
+            } else if let removal {
+                out.removed[id] = removal
+            }
+        }
+        return out
     }
 
     // MARK: Taste
