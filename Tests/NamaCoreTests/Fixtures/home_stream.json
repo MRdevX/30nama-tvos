@@ -1,0 +1,1890 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "تماشای آنلاین",
+ "result": {
+  "hero_header": {
+   "posts": [
+    {
+     "id": 469773,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 3,
+      "year": 2021,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-14",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Bilibili"
+     ],
+     "title": {
+      "english": "Link Click 2021",
+      "local": null
+     },
+     "plot": {
+      "english": "Using superpowers to enter their clientele's photos one by one, Cheng Xiaoshi and Lu Guang take their work seriously at \"Time Photo Studio,\" a small photography shop set in the backdrop of a modern metropolis.",
+      "local": "چنگ شیاشی و لو گوانگ در «آتلیه عکاسی زمان»، یک مغازه عکاسی کوچک در پس‌زمینه‌ی یک کلانشهر مدرن، کار خود را بسیار جدی می‌گیرند. آنها با استفاده از قدرت‌های فراطبیعی‌شان، یک به یک وارد عکس‌های مشتریان خود می‌شوند."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "فانتزی",
+       "slug": "fantasy"
+      },
+      {
+       "name": "علمی تخیلی",
+       "slug": "sci-fi"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30469773-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30469773-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30469773-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30469773-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30469773-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30469773-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30469773-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30469773-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30469773_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30469773_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 7.91,
+       "votes": 11,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt14976292",
+       "score": 8.5,
+       "votes": 7639,
+       "top_250": ""
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/61607/Shiguang_Dailiren_III",
+       "score": 8.72,
+       "votes": 181913
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 195,
+      "favorite": 184
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "16 October 2026 Friday",
+       "j": "۲۴ مهر ۱۴۰۵ جمعه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 685883,
+     "post_type": "title",
+     "options": {
+      "title_type": "movie",
+      "stream": true,
+      "is_series": false,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": null,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "R",
+      "time": {
+       "default": 106,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "title": {
+      "english": "Animals 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to come up with the ransom payment. With most of their money spent on his political campaign, they have to get their hands dirty and expose a side of their lives they never intended to see the light of day.",
+      "local": "زمانی که پسر یک نامزد شهرداری لس آنجلس ربوده می‌شود، او و همسرش تنها چند ساعت فرصت دارند تا پول باج را آماده کنند. از آنجایی که بیشتر پولشان صرف کمپین سیاسی‌اش شده، آن‌ها مجبور می‌شوند دست به کارهای خلاف بزنند و جنبه‌ای تاریک از زندگی‌شان را آشکار سازند که هرگز قصد نداشتند فاش شود."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "جنایی",
+       "slug": "crime"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "هیجان انگیز",
+       "slug": "thriller"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "b3IMipk=0;^N000M00-90V-o",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.webp?1791531387",
+        "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.webp?1791531387",
+        "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.webp?1791531387",
+        "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.webp?1791531387"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.jpg?1791531387",
+        "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.jpg?1791531387",
+        "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.jpg?1791531387",
+        "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.jpg?1791531387"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.webp?1791531410",
+       "jpg": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.jpg?1791531410"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 6.29,
+       "votes": 7,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt31049299",
+       "score": 0,
+       "votes": 0,
+       "top_250": ""
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 145,
+      "favorite": 118
+     },
+     "air": {
+      "air_status": "",
+      "air_data": null,
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 707540,
+     "post_type": "title",
+     "options": {
+      "title_type": "movie",
+      "stream": true,
+      "is_series": false,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": null,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "PG-13",
+      "time": {
+       "default": 126,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "title": {
+      "english": "Matchbox the Movie 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "When a group of former childhood friends reconnect, their reunion takes a wild turn as they stumble upon a dangerous international plot—and must save the world.",
+      "local": "وقتی گروهی از دوستان قدیمی دوران کودکی دوباره دور هم جمع می‌شوند، تجدید دیدارشان با کشف یک توطئه خطرناک بین‌المللی، به مسیری غیرمنتظره و پرماجرا کشیده می‌شود و آن‌ها مجبور می‌شوند دنیا را نجات دهند."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30707540-s_30NAMA.webp?1791523589",
+        "medium": "https://cdn-world.hana-api.com/poster/30707540-m_30NAMA.webp?1791523589",
+        "large": "https://cdn-world.hana-api.com/poster/30707540-l_30NAMA.webp?1791523589",
+        "big": "https://cdn-world.hana-api.com/poster/30707540-b_30NAMA.webp?1791523589"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30707540-s_30NAMA.jpg?1791523589",
+        "medium": "https://cdn-world.hana-api.com/poster/30707540-m_30NAMA.jpg?1791523589",
+        "large": "https://cdn-world.hana-api.com/poster/30707540-l_30NAMA.jpg?1791523589",
+        "big": "https://cdn-world.hana-api.com/poster/30707540-b_30NAMA.jpg?1791523589"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30707540_30NAMA.webp?1791523586",
+       "jpg": "https://cdn-world.hana-api.com/cover/30707540_30NAMA.jpg?1791523586"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 3,
+       "votes": 4,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt28498219",
+       "score": 0,
+       "votes": 0,
+       "top_250": ""
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/movie/matchbox-the-movie",
+       "score": 44
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 120,
+      "favorite": 101
+     },
+     "air": {
+      "air_status": "",
+      "air_data": null,
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    }
+   ],
+   "notes": {
+    "title": "۴۰۰ هزار فیلم و قسمت سریال",
+    "features": [
+     "پشتیبانی ۲۴ ساعته",
+     "بدون سانسور و حذفیات",
+     "اپلیکیشن اختصاصی"
+    ]
+   }
+  },
+  "suggested": {
+   "posts": [
+    {
+     "id": 205604,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 4,
+      "year": 2016,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-MA",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Tokyo MX"
+     ],
+     "title": {
+      "english": "Re Zero kara Hajimeru Isekai Seikatsu (Re: Zero, Starting Life in Another World) 2016",
+      "local": null
+     },
+     "plot": {
+      "english": "After being suddenly transported to another world, Subaru Natsuki and his new female partner are brutally murdered. However, Subaru awakens to a familiar scene, meeting the same girl again. The day begins to mysteriously repeat itself.",
+      "local": "سوبارو ناتسوکی ناگهان به دنیایی دیگر منتقل می‌شود و به همراه دختری که به تازگی با او آشنا شده، به طرز وحشیانه‌ای به قتل می‌رسد. اما او دوباره بیدار شده و خود را در صحنه‌ای آشنا می‌یابد و بار دیگر همان دختر را ملاقات می‌کند. طولی نمی‌کشد که روز به شکلی مرموز شروع به تکرار شدن می‌کند."
+     },
+     "genre": [
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "فانتزی",
+       "slug": "fantasy"
+      },
+      {
+       "name": "ترسناک",
+       "slug": "horror"
+      },
+      {
+       "name": "معمایی",
+       "slug": "mystery"
+      },
+      {
+       "name": "عاشقانه",
+       "slug": "romance"
+      },
+      {
+       "name": "هیجان انگیز",
+       "slug": "thriller"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30205604-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30205604-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30205604-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30205604-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30205604-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30205604-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30205604-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30205604-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30205604_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30205604_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 8.53,
+       "votes": 59,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt5607616",
+       "score": 8.1,
+       "votes": 40903,
+       "top_250": ""
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/61316/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_4th_Season",
+       "score": 8.49,
+       "votes": 141872
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 579,
+      "favorite": 528
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "7 October 2026 Wednesday",
+       "j": "۱۵ مهر ۱۴۰۵ چهارشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 12294,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 1,
+      "year": 1999,
+      "year_end": null,
+      "budget": "¥10,000,000",
+      "age": "TV-14",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Adult Swim",
+      "Fuji TV"
+     ],
+     "title": {
+      "english": "One Piece 1999",
+      "local": "وان پیس"
+     },
+     "plot": {
+      "english": "Monkey D. Luffy, a pirate with rubber powers, forms the Straw Hat crew and sails the Grand Line, battling rivals and the World Government on a quest for the legendary treasure One Piece and the title of Pirate King.",
+      "local": "مانکی دی. لوفی، یک دزد دریایی با قدرت‌های لاستیکی، گروهی به نام «کلاه حصیری‌ها» را تشکیل می‌دهد و راهی اقیانوس بزرگ «گرند لاین» می‌شود. هدف او پیدا کردن گنج افسانه‌ای «وان پیس» و به دست آوردن عنوان پادشاه دزدان دریایی است و در این راه با رقیبان و دولت جهانی به مبارزه می‌پردازد."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "فانتزی",
+       "slug": "fantasy"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/3012294-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/3012294-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/3012294-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/3012294-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/3012294-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/3012294-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/3012294-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/3012294-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/3012294_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/3012294_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 9.07,
+       "votes": 458,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt0388629",
+       "score": 9,
+       "votes": 349376,
+       "top_250": "55"
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/21/One_Piece",
+       "score": 8.73,
+       "votes": 1513210
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 1863,
+      "favorite": 2199
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "5 October 2026 Monday",
+       "j": "۱۳ مهر ۱۴۰۵ دوشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 315332,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 3,
+      "year": 2021,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-MA",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "AT-X"
+     ],
+     "title": {
+      "english": "Mushoku Tensei: Jobless Reincarnation  2021",
+      "local": null
+     },
+     "plot": {
+      "english": "In the aftermath of World War II, a Hungarian teenager, captured by Soviet troops, forms an unlikely bond with a Russian soldier in a remote prison camp.",
+      "local": "پس از جنگ جهانی دوم، یک نوجوان مجارستانی به اسارت نیروهای شوروی درمی‌آید. او در یک اردوگاه دورافتاده، رابطه‌ای دور از انتظار با یک سرباز روس شکل می‌دهد."
+     },
+     "genre": [
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "فانتزی",
+       "slug": "fantasy"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30315332-s_30NAMA.webp?1789754392",
+        "medium": "https://cdn-world.hana-api.com/poster/30315332-m_30NAMA.webp?1789754392",
+        "large": "https://cdn-world.hana-api.com/poster/30315332-l_30NAMA.webp?1789754392",
+        "big": "https://cdn-world.hana-api.com/poster/30315332-b_30NAMA.webp?1789754392"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30315332-s_30NAMA.jpg?1789754392",
+        "medium": "https://cdn-world.hana-api.com/poster/30315332-m_30NAMA.jpg?1789754392",
+        "large": "https://cdn-world.hana-api.com/poster/30315332-l_30NAMA.jpg?1789754392",
+        "big": "https://cdn-world.hana-api.com/poster/30315332-b_30NAMA.jpg?1789754392"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30315332_30NAMA.webp?1789754438",
+       "jpg": "https://cdn-world.hana-api.com/cover/30315332_30NAMA.jpg?1789754438"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 8.36,
+       "votes": 42,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt13293588",
+       "score": 8.2,
+       "votes": 31744,
+       "top_250": ""
+      },
+      "rottentomatoes": {
+       "link": "https://www.rottentomatoes.com/tv/mushoku_tensei_jobless_reincarnation",
+       "score": 82
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/59193/Mushoku_Tensei_III__Isekai_Ittara_Honki_Dasu",
+       "score": 8.35,
+       "votes": 925480
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 404,
+      "favorite": 401
+     },
+     "air": {
+      "air_status": "پایان فصل",
+      "air_data": " 3",
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    }
+   ]
+  },
+  "movies": {
+   "posts": [
+    {
+     "id": 685883,
+     "post_type": "title",
+     "options": {
+      "title_type": "movie",
+      "stream": true,
+      "is_series": false,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": null,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "R",
+      "time": {
+       "default": 106,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "title": {
+      "english": "Animals 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to come up with the ransom payment. With most of their money spent on his political campaign, they have to get their hands dirty and expose a side of their lives they never intended to see the light of day.",
+      "local": "زمانی که پسر یک نامزد شهرداری لس آنجلس ربوده می‌شود، او و همسرش تنها چند ساعت فرصت دارند تا پول باج را آماده کنند. از آنجایی که بیشتر پولشان صرف کمپین سیاسی‌اش شده، آن‌ها مجبور می‌شوند دست به کارهای خلاف بزنند و جنبه‌ای تاریک از زندگی‌شان را آشکار سازند که هرگز قصد نداشتند فاش شود."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "جنایی",
+       "slug": "crime"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "هیجان انگیز",
+       "slug": "thriller"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "b3IMipk=0;^N000M00-90V-o",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.webp?1791531387",
+        "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.webp?1791531387",
+        "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.webp?1791531387",
+        "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.webp?1791531387"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.jpg?1791531387",
+        "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.jpg?1791531387",
+        "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.jpg?1791531387",
+        "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.jpg?1791531387"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.webp?1791531410",
+       "jpg": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.jpg?1791531410"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 6.29,
+       "votes": 7,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt31049299",
+       "score": 0,
+       "votes": 0,
+       "top_250": ""
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 145,
+      "favorite": 118
+     },
+     "air": {
+      "air_status": "",
+      "air_data": null,
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 707540,
+     "post_type": "title",
+     "options": {
+      "title_type": "movie",
+      "stream": true,
+      "is_series": false,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": null,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "PG-13",
+      "time": {
+       "default": 126,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "title": {
+      "english": "Matchbox the Movie 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "When a group of former childhood friends reconnect, their reunion takes a wild turn as they stumble upon a dangerous international plot—and must save the world.",
+      "local": "وقتی گروهی از دوستان قدیمی دوران کودکی دوباره دور هم جمع می‌شوند، تجدید دیدارشان با کشف یک توطئه خطرناک بین‌المللی، به مسیری غیرمنتظره و پرماجرا کشیده می‌شود و آن‌ها مجبور می‌شوند دنیا را نجات دهند."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30707540-s_30NAMA.webp?1791523589",
+        "medium": "https://cdn-world.hana-api.com/poster/30707540-m_30NAMA.webp?1791523589",
+        "large": "https://cdn-world.hana-api.com/poster/30707540-l_30NAMA.webp?1791523589",
+        "big": "https://cdn-world.hana-api.com/poster/30707540-b_30NAMA.webp?1791523589"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30707540-s_30NAMA.jpg?1791523589",
+        "medium": "https://cdn-world.hana-api.com/poster/30707540-m_30NAMA.jpg?1791523589",
+        "large": "https://cdn-world.hana-api.com/poster/30707540-l_30NAMA.jpg?1791523589",
+        "big": "https://cdn-world.hana-api.com/poster/30707540-b_30NAMA.jpg?1791523589"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30707540_30NAMA.webp?1791523586",
+       "jpg": "https://cdn-world.hana-api.com/cover/30707540_30NAMA.jpg?1791523586"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 3,
+       "votes": 4,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt28498219",
+       "score": 0,
+       "votes": 0,
+       "top_250": ""
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/movie/matchbox-the-movie",
+       "score": 44
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 120,
+      "favorite": 101
+     },
+     "air": {
+      "air_status": "",
+      "air_data": null,
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 707111,
+     "post_type": "title",
+     "options": {
+      "title_type": "movie",
+      "stream": true,
+      "is_series": false,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": null,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "R",
+      "time": {
+       "default": 107,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "title": {
+      "english": "The Invite 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "Joe and Angela's marriage is on thin ice. When they invite their enigmatic upstairs neighbors for a dinner party, the night spirals into unexpected places.",
+      "local": "رابطه زناشویی جو و آنجلا در وضعیت شکننده و حساسی قرار دارد. وقتی آن‌ها همسایه‌های مرموز طبقه بالای خود را برای یک مهمانی شام دعوت می‌کنند، وقایع آن شب به سمت و سویی غیرقابل پیش‌بینی کشیده می‌شود."
+     },
+     "genre": [
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "عاشقانه",
+       "slug": "romance"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bNB|Q$E1-=kYyZM_Ny%2OZs:",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30707111-s_30NAMA.webp?1785492647",
+        "medium": "https://cdn-world.hana-api.com/poster/30707111-m_30NAMA.webp?1785492647",
+        "large": "https://cdn-world.hana-api.com/poster/30707111-l_30NAMA.webp?1785492647",
+        "big": "https://cdn-world.hana-api.com/poster/30707111-b_30NAMA.webp?1785492647"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30707111-s_30NAMA.jpg?1785492647",
+        "medium": "https://cdn-world.hana-api.com/poster/30707111-m_30NAMA.jpg?1785492647",
+        "large": "https://cdn-world.hana-api.com/poster/30707111-l_30NAMA.jpg?1785492647",
+        "big": "https://cdn-world.hana-api.com/poster/30707111-b_30NAMA.jpg?1785492647"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30707111_30NAMA.webp?1785492676",
+       "jpg": "https://cdn-world.hana-api.com/cover/30707111_30NAMA.jpg?1785492676"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 7.2,
+       "votes": 60,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt14173636",
+       "score": 7.8,
+       "votes": 178,
+       "top_250": ""
+      },
+      "rottentomatoes": {
+       "link": "https://www.rottentomatoes.com/m/the_invite",
+       "score": 97
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/movie/the-invite",
+       "score": 77
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 519,
+      "favorite": 523
+     },
+     "air": {
+      "air_status": "",
+      "air_data": null,
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    }
+   ]
+  },
+  "series": {
+   "posts": [
+    {
+     "id": 708843,
+     "post_type": "title",
+     "options": {
+      "title_type": "series",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 2,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": null,
+      "time": {
+       "default": null,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "ABC"
+     ],
+     "title": {
+      "english": "Scrubs 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "J.D. & Turk scrub in together for the first time in a long time–medicine has changed, interns have changed, but their bromance has stood the test of time. Characters new and old navigate the waters of Sacred Heart with laughter, heart and some surprises along the way.",
+      "local": "جی‌دی و ترک بعد از مدتی طولانی، دوباره در کنار هم مشغول به کار می‌شوند. دنیای پزشکی و کارآموزان جدید تغییر کرده‌اند، اما رفاقت صمیمی و برادرانه آن‌ها همچنان پابرجاست. شخصیت‌های جدید و قدیمی در بیمارستان «سیکرد هارت» با ماجراهایی روبرو می‌شوند که با خنده، احساسات و اتفاقات غافلگیرکننده همراه است."
+     },
+     "genre": [
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30708843-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30708843-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30708843-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30708843-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30708843-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30708843-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30708843-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30708843-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30708843_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30708843_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 9,
+       "votes": 3,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt40197357",
+       "score": 8.5,
+       "votes": 3981,
+       "top_250": ""
+      },
+      "rottentomatoes": {
+       "link": "https://www.rottentomatoes.com/tv/scrubs_2026",
+       "score": 90
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/tv/scrubs-2026/",
+       "score": 72
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 150,
+      "favorite": 138
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "15 October 2026 Thursday",
+       "j": "۲۳ مهر ۱۴۰۵ پنجشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 704970,
+     "post_type": "title",
+     "options": {
+      "title_type": "series",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 2,
+      "year": 2026,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-14",
+      "time": {
+       "default": null,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "CBS"
+     ],
+     "title": {
+      "english": "Marshals 2026",
+      "local": null
+     },
+     "plot": {
+      "english": "With the Yellowstone Ranch behind him, Kayce Dutton joins an elite unit of U.S. Marshals, combining his skills as a cowboy and Navy SEAL to bring range justice to Montana, where he and his teammates must balance family, duty and the high psychological cost that comes with serving as the last line of defense in the region's war on violence.",
+      "local": "کیسی داتون با ترک مزرعه یلواستون، به یک واحد ویژه از مارشال‌های ایالات متحده می‌پیوندد. او با ترکیب مهارت‌هایش به عنوان یک کابوی و عضو سابق یگان ویژه نیروی دریایی (Navy SEAL)، سعی در برقراری عدالت در ایالت مونتانا دارد. در این مسیر، او و هم‌تیمی‌هایش باید میان خانواده، وظیفه و هزینه روانی سنگینی که خدمت به عنوان آخرین خط دفاعی در جنگ منطقه علیه خشونت به همراه دارد، تعادل برقرار کنند."
+     },
+     "genre": [
+      {
+       "name": "وسترن",
+       "slug": "western"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bNB|Q$E1-=kYyZM_Ny%2OZs:",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30704970-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30704970-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30704970-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30704970-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30704970-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30704970-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30704970-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30704970-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30704970_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30704970_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 6.67,
+       "votes": 6,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt36849871",
+       "score": 6.1,
+       "votes": 4547,
+       "top_250": ""
+      },
+      "rottentomatoes": {
+       "link": "https://www.rottentomatoes.com/tv/marshals",
+       "score": 45
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/tv/marshals/",
+       "score": 57
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 125,
+      "favorite": 113
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "19 October 2026 Monday",
+       "j": "۲۷ مهر ۱۴۰۵ دوشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 689624,
+     "post_type": "title",
+     "options": {
+      "title_type": "series",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 2,
+      "year": 2025,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-MA",
+      "time": {
+       "default": 30,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Netflix"
+     ],
+     "title": {
+      "english": "Running Point 2025",
+      "local": null
+     },
+     "plot": {
+      "english": "Isla Gordon, overlooked her whole life, is appointed President of the LA Waves basketball team, a family business, when her brother enters rehab. She aims to prove she is the right choice despite skepticism.",
+      "local": "آیلا گوردون، که در تمام زندگی‌اش نادیده گرفته شده، پس از اینکه برادرش راهی یک مرکز بازپروری می‌شود، به ریاست تیم بسکتبال خانوادگی‌شان، «اِل‌اِی وِیوز»، منصوب می‌شود. او حالا قصد دارد تا با وجود تمام شک و تردیدها، ثابت کند که بهترین انتخاب برای این جایگاه است."
+     },
+     "genre": [
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      },
+      {
+       "name": "ورزشی",
+       "slug": "sport"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "b3IMipk=0;^N000M00-90V-o",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30689624-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30689624-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30689624-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30689624-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30689624-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30689624-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30689624-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30689624-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30689624_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30689624_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 9.25,
+       "votes": 4,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt14879018",
+       "score": 7.3,
+       "votes": 23634,
+       "top_250": ""
+      },
+      "rottentomatoes": {
+       "link": "https://www.rottentomatoes.com/tv/running_point",
+       "score": 60
+      },
+      "metacritic": {
+       "link": "https://www.metacritic.com/tv/running-point/",
+       "score": 57
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 85,
+      "favorite": 67
+     },
+     "air": {
+      "air_status": "پایان فصل",
+      "air_data": " 2",
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    }
+   ]
+  },
+  "anime": {
+   "posts": [
+    {
+     "id": 205604,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 4,
+      "year": 2016,
+      "year_end": null,
+      "budget": null,
+      "age": "TV-MA",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Tokyo MX"
+     ],
+     "title": {
+      "english": "Re Zero kara Hajimeru Isekai Seikatsu (Re: Zero, Starting Life in Another World) 2016",
+      "local": null
+     },
+     "plot": {
+      "english": "After being suddenly transported to another world, Subaru Natsuki and his new female partner are brutally murdered. However, Subaru awakens to a familiar scene, meeting the same girl again. The day begins to mysteriously repeat itself.",
+      "local": "سوبارو ناتسوکی ناگهان به دنیایی دیگر منتقل می‌شود و به همراه دختری که به تازگی با او آشنا شده، به طرز وحشیانه‌ای به قتل می‌رسد. اما او دوباره بیدار شده و خود را در صحنه‌ای آشنا می‌یابد و بار دیگر همان دختر را ملاقات می‌کند. طولی نمی‌کشد که روز به شکلی مرموز شروع به تکرار شدن می‌کند."
+     },
+     "genre": [
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      },
+      {
+       "name": "فانتزی",
+       "slug": "fantasy"
+      },
+      {
+       "name": "ترسناک",
+       "slug": "horror"
+      },
+      {
+       "name": "معمایی",
+       "slug": "mystery"
+      },
+      {
+       "name": "عاشقانه",
+       "slug": "romance"
+      },
+      {
+       "name": "هیجان انگیز",
+       "slug": "thriller"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bNB|Q$E1-=kYyZM_Ny%2OZs:",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30205604-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30205604-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30205604-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30205604-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30205604-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30205604-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30205604-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30205604-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30205604_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30205604_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 8.53,
+       "votes": 59,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt5607616",
+       "score": 8.1,
+       "votes": 40903,
+       "top_250": ""
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/61316/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_4th_Season",
+       "score": 8.49,
+       "votes": 141872
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 579,
+      "favorite": 528
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "7 October 2026 Wednesday",
+       "j": "۱۵ مهر ۱۴۰۵ چهارشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 698443,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": false,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 2,
+      "year": 2025,
+      "year_end": null,
+      "budget": null,
+      "age": null,
+      "time": {
+       "default": null,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "TV Tokyo"
+     ],
+     "title": {
+      "english": "Hotel Inhumans 2025",
+      "local": null
+     },
+     "plot": {
+      "english": "A special hotel is run for hitmen and assassins.",
+      "local": "یک هتل ویژه برای آدمکش‌ها و قاتلان حرفه‌ای اداره می‌شود."
+     },
+     "genre": [
+      {
+       "name": "اکشن",
+       "slug": "action"
+      },
+      {
+       "name": "ماجراجویی",
+       "slug": "adventure"
+      },
+      {
+       "name": "درام",
+       "slug": "drama"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "b3IMipk=0;^N000M00-90V-o",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30698443-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30698443-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30698443-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30698443-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30698443-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30698443-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30698443-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30698443-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30698443_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30698443_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 4.5,
+       "votes": 2,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt35995459",
+       "score": 6.1,
+       "votes": 222,
+       "top_250": ""
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/62590/Hotel_Inhumans_2nd_Season",
+       "score": 6.72,
+       "votes": 5539
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 15,
+      "favorite": 16
+     },
+     "air": {
+      "air_status": "در حال پخش",
+      "air_data": null,
+      "next_episode_caption": "قسمت بعدی",
+      "next_episode_date": {
+       "g": "18 October 2026 Sunday",
+       "j": "۲۶ مهر ۱۴۰۵ یکشنبه"
+      }
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    },
+    {
+     "id": 572667,
+     "post_type": "title",
+     "options": {
+      "title_type": "anime",
+      "stream": true,
+      "is_series": true,
+      "persian_subtitle": true,
+      "exclusive_subtitle": false,
+      "coming_soon": false,
+      "free_download": false,
+      "free_stream": false
+     },
+     "info": {
+      "seasons": 2,
+      "year": 2023,
+      "year_end": 2023,
+      "budget": null,
+      "age": "TV-14",
+      "time": {
+       "default": 24,
+       "others": []
+      }
+     },
+     "release_dates": {
+      "screen": null,
+      "web": null,
+      "bluray": null
+     },
+     "network": [
+      "Tokyo MX"
+     ],
+     "title": {
+      "english": "The Angel Next Door Spoils Me Rotten (Otonari no tenshi-sama ni itsu no ma ni ka dame-ningen ni sareteita ken) 2023",
+      "local": null
+     },
+     "plot": {
+      "english": "Mahiru is so beautiful that they call her \"angel\", Amane is an average boy who has never thought much about beauty, but everything changes when he sees Mahiru during a storm, and an incredible and unlikely relationship begins.",
+      "local": "ماهیرو آنقدر زیباست که همه او را «فرشته» صدا می‌زنند. آمانه یک پسر معمولی است که هرگز توجه زیادی به زیبایی نداشته، اما همه چیز زمانی تغییر می‌کند که او ماهیرو را در یک روز طوفانی می‌بیند و به این ترتیب، رابطه‌ای باورنکردنی و دور از انتظار بینشان آغاز می‌شود."
+     },
+     "genre": [
+      {
+       "name": "کمدی",
+       "slug": "comedy"
+      },
+      {
+       "name": "عاشقانه",
+       "slug": "romance"
+      }
+     ],
+     "cast": [],
+     "crew": {
+      "director": null,
+      "creator": null,
+      "writer": null
+     },
+     "image": {
+      "poster": {
+       "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+       "webp": {
+        "small": "https://cdn-world.hana-api.com/poster/30572667-s_30NAMA.webp?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30572667-m_30NAMA.webp?3",
+        "large": "https://cdn-world.hana-api.com/poster/30572667-l_30NAMA.webp?3",
+        "big": "https://cdn-world.hana-api.com/poster/30572667-b_30NAMA.webp?3"
+       },
+       "jpg": {
+        "small": "https://cdn-world.hana-api.com/poster/30572667-s_30NAMA.jpg?3",
+        "medium": "https://cdn-world.hana-api.com/poster/30572667-m_30NAMA.jpg?3",
+        "large": "https://cdn-world.hana-api.com/poster/30572667-l_30NAMA.jpg?3",
+        "big": "https://cdn-world.hana-api.com/poster/30572667-b_30NAMA.jpg?3"
+       }
+      },
+      "cover": {
+       "webp": "https://cdn-world.hana-api.com/cover/30572667_30NAMA.webp?3",
+       "jpg": "https://cdn-world.hana-api.com/cover/30572667_30NAMA.jpg?3"
+      }
+     },
+     "score": {
+      "30nama": {
+       "score": 8.33,
+       "votes": 3,
+       "top_100": null
+      },
+      "imdb": {
+       "link": "https://www.imdb.com/title/tt19064770",
+       "score": 7.8,
+       "votes": 6516,
+       "top_250": ""
+      },
+      "myanimelist": {
+       "link": "https://myanimelist.net/anime/56876/Otonari_no_Tenshi-sama_ni_Itsunomanika_Dame_Ningen_ni_Sareteita_Ken_2",
+       "score": 7.82,
+       "votes": 130657
+      }
+     },
+     "country": null,
+     "language": {
+      "primary": null,
+      "others": null
+     },
+     "list": {
+      "watchlist": 40,
+      "favorite": 57
+     },
+     "air": {
+      "air_status": "پایان فصل",
+      "air_data": " 2",
+      "next_episode_caption": null,
+      "next_episode_date": null
+     },
+     "note": {
+      "main": null,
+      "update": null
+     },
+     "subtitle": null,
+     "seo": null
+    }
+   ]
+  },
+  "cache": {
+   "cache": true,
+   "cache_key": "CDN-WORLD.HANA-API.COM_WEBTV_FA_GUEST_HOME_STREAM_20260917_2",
+   "cache_time": "60 min"
+  }
+ },
+ "action": null,
+ "seo": null,
+ "timestamp": 1791815670
+}

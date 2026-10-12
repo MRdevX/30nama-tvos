@@ -1,0 +1,220 @@
+import XCTest
+@testable import NamaCore
+
+/// Scripted network: answers each request from a handler and records what was asked.
+final class FakeNetwork: @unchecked Sendable {
+    private let lock = NSLock()
+    private var log: [(action: String, host: String, headers: [String: String], body: String)] = []
+    private var handler: (String, String) -> (Int, String, [String: String])
+
+    init(_ handler: @escaping (_ action: String, _ host: String) -> (Int, String, [String: String])) {
+        self.handler = handler
+    }
+
+    var calls: [String] { lock.withLock { log.map(\.action) } }
+    var last: (action: String, host: String, headers: [String: String], body: String)? { lock.withLock { log.last } }
+
+    var transport: Transport {
+        { [self] request in
+            let url = request.url!
+            let action = url.path.contains("/action/") ? url.lastPathComponent : "discovery"
+            let host = url.host ?? ""
+            let (status, body, headers) = lock.withLock { () -> (Int, String, [String: String]) in
+                log.append((action, host, request.allHTTPHeaderFields ?? [:], String(data: request.httpBody ?? Data(), encoding: .utf8) ?? ""))
+                return handler(action, host)
+            }
+            if status == 0 { throw URLError(.timedOut) }
+            return (Data(body.utf8), HTTPURLResponse(url: url, statusCode: status, httpVersion: nil, headerFields: headers)!)
+        }
+    }
+}
+
+private let ok = #"{"success":true,"msg":null,"result":{"posts":[]}}"#
+private let loginRequired = #"{"success":false,"msg":"ابتدا وارد حساب کاربری خود شوید","result":null}"#
+
+final class APIClientTests: XCTestCase {
+    private func config() -> APIConfig {
+        var c = APIConfig()
+        c.backoff = [0.02, 0.02]
+        c.requestSpacing = 0
+        return c
+    }
+
+    func testBootstrapSkipsHostsThatDoNotAnswerTheAPI() async throws {
+        let net = FakeNetwork { action, host in
+            if action == "discovery" { return (0, "", [:]) }                       // discovery unreachable -> built-in hosts
+            if host.contains("kazem") { return (403, "<html>blocked</html>", [:]) } // geo-blocked host answers with HTML
+            return (200, ok, [:])
+        }
+        let api = APIClient(config: config(), transport: net.transport)
+        let host = try await api.bootstrap()
+        XCTAssertEqual(host, "https://world.hana-api.com/api/v2")
+    }
+
+    func testBootstrapPrefersPublishedEndpointList() async throws {
+        let net = FakeNetwork { action, host in
+            if action == "discovery" { return (200, #"[{"location":"X","host":"https://new.example.com/api/v2"}]"#, [:]) }
+            return host == "new.example.com" ? (200, ok, [:]) : (0, "", [:])
+        }
+        let api = APIClient(config: config(), transport: net.transport)
+        let host = try await api.bootstrap()
+        XCTAssertEqual(host, "https://new.example.com/api/v2")
+    }
+
+    func testBootstrapFailsWhenNothingAnswers() async {
+        let net = FakeNetwork { _, _ in (0, "", [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        do {
+            try await api.bootstrap()
+            XCTFail("expected unreachable")
+        } catch {
+            XCTAssertEqual(error as? APIError, .unreachable)
+        }
+    }
+
+    func testRequestCarriesHeadersAndFormBody() async throws {
+        let net = FakeNetwork { _, _ in (200, ok, [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        await api.setToken("tok")
+        await api.setLanguage(.en)
+        _ = try await api.get("search", ["query": "breaking bad & co", "page": "1"])
+        let last = try XCTUnwrap(net.last)
+        XCTAssertEqual(last.action, "search")
+        XCTAssertEqual(last.body, "page=1&query=breaking%20bad%20%26%20co")
+        XCTAssertEqual(last.headers["c-token"], "tok")
+        XCTAssertEqual(last.headers["c-language"], "en")
+        XCTAssertEqual(last.headers["c-version-number"], "1.0.0")
+        XCTAssertEqual(last.headers["c-api-key"], APIConfig().apiKeys[0])
+    }
+
+    func testRateLimitIsRetriedThenSucceeds() async throws {
+        let remaining = Counter(2)
+        let net = FakeNetwork { _, _ in
+            remaining.take() ? (429, "error code: 1015", ["Retry-After": "0"]) : (200, ok, [:])
+        }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        _ = try await api.get("single", ["post_id": "1"])
+        XCTAssertEqual(net.calls, ["single", "single", "single"])
+    }
+
+    func testPersistentFailureGivesUpAfterRetries() async {
+        let net = FakeNetwork { _, _ in (502, "<html>502</html>", [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        do {
+            _ = try await api.get("single")
+            XCTFail("expected failure")
+        } catch {
+            guard case APIError.transient = error else { return XCTFail("wrong error \(error)") }
+        }
+        XCTAssertEqual(net.calls.count, 3, "first try plus two retries")
+    }
+
+    func testProgressReportsAreNeverReplayed() async {
+        let net = FakeNetwork { _, _ in (0, "", [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        _ = try? await api.call("observer", ["time": "10"])
+        XCTAssertEqual(net.calls, ["observer"])
+    }
+
+    func testServerErrorSurfacesItsMessage() async {
+        let net = FakeNetwork { _, _ in (200, #"{"success":false,"msg":"nope","result":null}"#, [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        do {
+            _ = try await api.get("single")
+            XCTFail("expected failure")
+        } catch {
+            XCTAssertEqual(error as? APIError, .server("nope"))
+        }
+        XCTAssertEqual(net.calls, ["single"], "a real API answer is not retried")
+    }
+
+    func testSessionExpiryIsConfirmedAgainstTheProfile() async throws {
+        let expired = Counter(0)
+        // The stream says "login required" but the profile still loads: a subscription problem, not a dead session.
+        var net = FakeNetwork { action, _ in action == "user" ? (200, ok, [:]) : (200, loginRequired, [:]) }
+        var api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        await api.setToken("tok")
+        await api.setSessionExpiredHandler { expired.add() }
+        let e = try await api.call("stream", ["post_id": "1"])
+        XCTAssertFalse(e.success)
+        XCTAssertEqual(net.calls, ["stream", "user"])
+        XCTAssertEqual(expired.value, 0)
+
+        // The profile refuses too: the session is gone.
+        net = FakeNetwork { _, _ in (200, loginRequired, [:]) }
+        api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        await api.setToken("tok")
+        await api.setSessionExpiredHandler { expired.add() }
+        _ = try await api.call("stream", ["post_id": "1"])
+        XCTAssertEqual(expired.value, 1)
+
+        // A guest is never "expired".
+        net = FakeNetwork { _, _ in (200, loginRequired, [:]) }
+        api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        await api.setSessionExpiredHandler { expired.add() }
+        _ = try await api.call("continue_watching")
+        XCTAssertEqual(net.calls, ["continue_watching"])
+        XCTAssertEqual(expired.value, 1)
+    }
+
+    func testGateLimitsConcurrencyAndServesScreenCallsFirst() async {
+        let gate = RequestGate(limit: 2, spacing: 0)
+        let order = Recorder()
+        let peak = Counter(0), now = Counter(0)
+
+        // Fill both slots, then queue background work followed by one screen call.
+        await gate.acquire(background: false)
+        await gate.acquire(background: false)
+        await withTaskGroup(of: Void.self) { group in
+            for i in 0..<4 {
+                group.addTask {
+                    await gate.acquire(background: true)
+                    order.add("bg\(i)"); peak.raise(to: now.add())
+                    try? await Task.sleep(nanoseconds: 20_000_000)
+                    now.sub(); await gate.release()
+                }
+            }
+            try? await Task.sleep(nanoseconds: 50_000_000)
+            group.addTask {
+                await gate.acquire(background: false)
+                order.add("core"); peak.raise(to: now.add())
+                try? await Task.sleep(nanoseconds: 20_000_000)
+                now.sub(); await gate.release()
+            }
+            try? await Task.sleep(nanoseconds: 50_000_000)
+            await gate.release()
+            try? await Task.sleep(nanoseconds: 10_000_000)
+            await gate.release()
+        }
+        XCTAssertEqual(order.values.first, "core", "screen call jumps the background queue")
+        XCTAssertEqual(order.values.count, 5)
+        XCTAssertLessThanOrEqual(peak.value, 2)
+    }
+}
+
+final class Counter: @unchecked Sendable {
+    private let lock = NSLock()
+    private var n: Int
+    init(_ n: Int) { self.n = n }
+    var value: Int { lock.withLock { n } }
+    /// Decrements while positive; true if it did.
+    func take() -> Bool { lock.withLock { if n > 0 { n -= 1; return true }; return false } }
+    @discardableResult func add() -> Int { lock.withLock { n += 1; return n } }
+    func sub() { lock.withLock { n -= 1 } }
+    func raise(to v: Int) { lock.withLock { n = max(n, v) } }
+}
+
+final class Recorder: @unchecked Sendable {
+    private let lock = NSLock()
+    private var items: [String] = []
+    var values: [String] { lock.withLock { items } }
+    func add(_ s: String) { lock.withLock { items.append(s) } }
+}

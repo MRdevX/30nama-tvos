@@ -1,0 +1,294 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "Single",
+ "result": {
+  "id": 685883,
+  "post_type": "title",
+  "options": {
+   "title_type": "movie",
+   "stream": true,
+   "is_series": false,
+   "persian_subtitle": false,
+   "exclusive_subtitle": false,
+   "coming_soon": false,
+   "free_download": false,
+   "free_stream": false
+  },
+  "info": {
+   "seasons": null,
+   "year": 2026,
+   "year_end": null,
+   "budget": null,
+   "age": "R",
+   "time": {
+    "default": 106,
+    "others": []
+   }
+  },
+  "release_dates": {
+   "screen": null,
+   "web": null,
+   "bluray": null
+  },
+  "title": {
+   "english": "Animals 2026",
+   "local": null
+  },
+  "plot": {
+   "english": "When the son of an L.A. mayoral candidate is kidnapped, he and his wife have a few hours to come up with the ransom payment. With most of their money spent on his political campaign, they have to get their hands dirty and expose a side of their lives they never intended to see the light of day.",
+   "local": "زمانی که پسر یک نامزد شهرداری لس آنجلس ربوده می‌شود، او و همسرش تنها چند ساعت فرصت دارند تا پول باج را آماده کنند. از آنجایی که بیشتر پولشان صرف کمپین سیاسی‌اش شده، آن‌ها مجبور می‌شوند دست به کارهای خلاف بزنند و جنبه‌ای تاریک از زندگی‌شان را آشکار سازند که هرگز قصد نداشتند فاش شود."
+  },
+  "genre": [
+   {
+    "name": "اکشن",
+    "slug": "action"
+   },
+   {
+    "name": "جنایی",
+    "slug": "crime"
+   },
+   {
+    "name": "درام",
+    "slug": "drama"
+   },
+   {
+    "name": "هیجان انگیز",
+    "slug": "thriller"
+   }
+  ],
+  "cast": [
+   {
+    "name": "Ben Affleck",
+    "as": "Milo Bradford",
+    "imdb": "nm0000255",
+    "order": 0,
+    "id": 151521,
+    "image": {
+     "poster": {
+      "preview": "bNB|Q$E1-=kYyZM_Ny%2OZs:",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/person/30151521-s_30NAMA.webp?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30151521-m_30NAMA.webp?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30151521-l_30NAMA.webp?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30151521-b_30NAMA.webp?1791531387"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/person/30151521-s_30NAMA.jpg?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30151521-m_30NAMA.jpg?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30151521-l_30NAMA.jpg?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30151521-b_30NAMA.jpg?1791531387"
+      }
+     }
+    }
+   },
+   {
+    "name": "Gillian Anderson",
+    "as": "",
+    "imdb": "nm0000096",
+    "order": 1
+   },
+   {
+    "name": "Steven Yeun",
+    "as": "",
+    "imdb": "nm3081796",
+    "order": 2,
+    "id": 417531,
+    "image": {
+     "poster": {
+      "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/person/30417531-s_30NAMA.webp?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30417531-m_30NAMA.webp?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30417531-l_30NAMA.webp?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30417531-b_30NAMA.webp?1791531387"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/person/30417531-s_30NAMA.jpg?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30417531-m_30NAMA.jpg?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30417531-l_30NAMA.jpg?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30417531-b_30NAMA.jpg?1791531387"
+      }
+     }
+    }
+   },
+   {
+    "name": "Kerry Washington",
+    "as": "",
+    "imdb": "nm0913488",
+    "order": 3,
+    "id": 194495,
+    "image": {
+     "poster": {
+      "preview": "b3IMipk=0;^N000M00-90V-o",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/person/30194495-s_30NAMA.webp?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30194495-m_30NAMA.webp?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30194495-l_30NAMA.webp?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30194495-b_30NAMA.webp?1791531387"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/person/30194495-s_30NAMA.jpg?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30194495-m_30NAMA.jpg?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30194495-l_30NAMA.jpg?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30194495-b_30NAMA.jpg?1791531387"
+      }
+     }
+    }
+   },
+   {
+    "name": "Matt Gerald",
+    "as": "",
+    "imdb": "nm0313902",
+    "order": 4
+   },
+   {
+    "name": "Ray Fisher",
+    "as": "",
+    "imdb": "nm3570321",
+    "order": 5,
+    "id": 420555,
+    "image": {
+     "poster": {
+      "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/person/30420555-s_30NAMA.webp?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30420555-m_30NAMA.webp?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30420555-l_30NAMA.webp?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30420555-b_30NAMA.webp?1791531387"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/person/30420555-s_30NAMA.jpg?1791531387",
+       "medium": "https://cdn-world.hana-api.com/person/30420555-m_30NAMA.jpg?1791531387",
+       "large": "https://cdn-world.hana-api.com/person/30420555-l_30NAMA.jpg?1791531387",
+       "big": "https://cdn-world.hana-api.com/person/30420555-b_30NAMA.jpg?1791531387"
+      }
+     }
+    }
+   }
+  ],
+  "crew": {
+   "director": [
+    {
+     "name": "Ben Affleck",
+     "imdb": "nm0000255",
+     "order": 0
+    }
+   ],
+   "creator": null,
+   "writer": [
+    {
+     "name": "Connor O. McIntyre",
+     "imdb": "nm4785609",
+     "order": 0
+    },
+    {
+     "name": "Billy Ray",
+     "imdb": "nm0712753",
+     "order": 1
+    },
+    {
+     "name": "Ben Affleck",
+     "imdb": "nm0000255",
+     "order": 2
+    }
+   ]
+  },
+  "image": {
+   "poster": {
+    "preview": "bdIi5wIU?^sAI;kWoJShWqso",
+    "webp": {
+     "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.webp?1791531387",
+     "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.webp?1791531387",
+     "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.webp?1791531387",
+     "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.webp?1791531387"
+    },
+    "jpg": {
+     "small": "https://cdn-world.hana-api.com/poster/30685883-s_30NAMA.jpg?1791531387",
+     "medium": "https://cdn-world.hana-api.com/poster/30685883-m_30NAMA.jpg?1791531387",
+     "large": "https://cdn-world.hana-api.com/poster/30685883-l_30NAMA.jpg?1791531387",
+     "big": "https://cdn-world.hana-api.com/poster/30685883-b_30NAMA.jpg?1791531387"
+    }
+   },
+   "cover": {
+    "webp": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.webp?1791531410",
+    "jpg": "https://cdn-world.hana-api.com/cover/30685883_30NAMA.jpg?1791531410"
+   }
+  },
+  "score": {
+   "30nama": {
+    "score": 6.29,
+    "votes": 7,
+    "top_100": null
+   },
+   "imdb": {
+    "link": "https://www.imdb.com/title/tt31049299",
+    "score": 0,
+    "votes": 0,
+    "top_250": ""
+   }
+  },
+  "country": [
+   {
+    "name": "United States",
+    "code": "US",
+    "order": 0
+   }
+  ],
+  "language": {
+   "primary": {
+    "name": "English",
+    "code": "en",
+    "order": 0
+   },
+   "others": null
+  },
+  "list": {
+   "watchlist": 145,
+   "favorite": 118
+  },
+  "air": {
+   "air_status": "",
+   "air_data": null,
+   "next_episode_caption": null,
+   "next_episode_date": null
+  },
+  "note": {
+   "main": null,
+   "update": [
+    {
+     "title": "منتشر شد",
+     "content": null,
+     "date": {
+      "g": "2026-10-09 11:08:12",
+      "j": "۱۴۰۵-۰۷-۱۷ ۱۱:۰۸:۱۲"
+     }
+    }
+   ]
+  },
+  "subtitle": [
+   {
+    "language": "فارسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/animals-2026/farsi_persian",
+    "single": false,
+    "type": null,
+    "season": null
+   },
+   {
+    "language": "انگلیسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/animals-2026/english",
+    "single": false,
+    "type": null,
+    "season": null
+   }
+  ],
+  "seo": null,
+  "continue_watching": null
+ },
+ "action": null,
+ "seo": null,
+ "timestamp": 1791815724
+}

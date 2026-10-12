@@ -1,0 +1,91 @@
+import XCTest
+@testable import NamaCore
+
+final class ParsingTests: XCTestCase {
+    func testJSONAccessorsAreLenient() throws {
+        let j = try JSON.parse(Data(#"{"n":"42","f":7.5,"t":true,"s":" hi ","z":null,"a":[1,"2"],"big":1234567}"#.utf8))
+        XCTAssertEqual(j["n"].int, 42)
+        XCTAssertEqual(j["f"].double, 7.5)
+        XCTAssertEqual(j["f"].string, "7.5")
+        XCTAssertEqual(j["big"].string, "1234567")
+        XCTAssertTrue(j["t"].bool)
+        XCTAssertFalse(j["t"].isNull)
+        XCTAssertNil(j["t"].int, "a boolean is not a number")
+        XCTAssertEqual(j["s"].text, "hi")
+        XCTAssertNil(j["z"].text)
+        XCTAssertTrue(j["missing"]["deeper"][3].isNull)
+        XCTAssertEqual(j["a"][1].int, 2)
+        XCTAssertEqual(try JSON.parse(XCTUnwrap(j.data())), j, "round-trips")
+    }
+
+    func testVTTParsing() {
+        let vtt = "\u{FEFF}WEBVTT\r\n\r\nNOTE made by a tool\r\n\r\n1\r\n00:00:01.000 --> 00:00:03.500 line:90%\r\n<i>Hello</i> &amp; welcome\r\nsecond line\r\n\r\n00:01:02,250 --> 00:01:04,000\r\n{\\an8}سلام دنیا\r\n\r\n01:00:00.000 --> 01:00:02.000\r\nLate\r\n"
+        let track = SubtitleTrack(vtt: vtt)
+        XCTAssertEqual(track.cues.count, 3)
+        XCTAssertEqual(track.cues[0], Cue(start: 1, end: 3.5, text: "Hello & welcome\nsecond line"))
+        XCTAssertEqual(track.cues[1].start, 62.25)
+        XCTAssertEqual(track.cues[1].text, "سلام دنیا")
+        XCTAssertEqual(track.cues[2].start, 3600)
+    }
+
+    func testCueLookup() {
+        let track = SubtitleTrack(cues: [
+            Cue(start: 10, end: 12, text: "b"),
+            Cue(start: 1, end: 3, text: "a"),
+            Cue(start: 10.5, end: 11, text: "overlap"),
+        ])
+        XCTAssertEqual(track.text(at: 0.5), "")
+        XCTAssertEqual(track.text(at: 1), "a")
+        XCTAssertEqual(track.text(at: 3), "", "end is exclusive")
+        XCTAssertEqual(track.text(at: 10.7), "overlap")
+        XCTAssertEqual(track.text(at: 11.5), "b", "falls back to an earlier cue that is still running")
+        XCTAssertEqual(track.text(at: 99), "")
+        XCTAssertEqual(SubtitleTrack().text(at: 5), "")
+    }
+
+    func testBlurHashDecodes() throws {
+        // Hash served by the API for a real poster.
+        let px = try XCTUnwrap(BlurHash.pixels("bRIr1_%M~qxtyXtR%hRjIUxu", width: 8, height: 12))
+        XCTAssertEqual(px.count, 8 * 12 * 4)
+        XCTAssertTrue(stride(from: 3, to: px.count, by: 4).allSatisfy { px[$0] == 255 }, "opaque")
+        XCTAssertGreaterThan(Set(px).count, 8, "not a flat colour")
+
+        // A single-component hash is exactly its average colour.
+        let flat = try XCTUnwrap(BlurHash.pixels("00OZZy", width: 2, height: 2))
+        XCTAssertEqual(Array(flat.prefix(4)), Array(flat.suffix(4)))
+
+        // ...and that colour is what `average` reports.
+        let average = try XCTUnwrap(BlurHash.average("00OZZy"))
+        XCTAssertEqual(UInt8((average.red * 255).rounded()), flat[0])
+        XCTAssertEqual(UInt8((average.blue * 255).rounded()), flat[2])
+        XCTAssertNil(BlurHash.average("0"))
+
+        XCTAssertNil(BlurHash.pixels("bRIr1_%M", width: 4, height: 4), "wrong length")
+        XCTAssertNil(BlurHash.pixels("", width: 4, height: 4))
+    }
+
+    func testFormatting() {
+        XCTAssertEqual(Fmt.clock(125), "2:05")
+        XCTAssertEqual(Fmt.clock(3723), "1:02:03")
+        XCTAssertEqual(Fmt.clock(-4), "0:00")
+        XCTAssertEqual(Fmt.runtime(minutes: 95, lang: .en), "1h 35m")
+        XCTAssertEqual(Fmt.runtime(minutes: 50, lang: .en), "50m")
+        XCTAssertEqual(Fmt.runtime(minutes: 120, lang: .fa), "۲ ساعت")
+        XCTAssertEqual(Fmt.runtime(minutes: 95, lang: .fa), "۱ ساعت و ۳۵ دقیقه")
+        XCTAssertNil(Fmt.runtime(minutes: 0, lang: .en))
+        XCTAssertEqual(Fmt.persianDigits("S2 · E15"), "S۲ · E۱۵")
+        XCTAssertEqual(Fmt.score(8.5), "8.5")
+        XCTAssertEqual(Fmt.count(84827, lang: .en), "84,827")
+        XCTAssertEqual(Episode.number("11,12"), 11)
+        XCTAssertEqual(Episode.label(nil, fallback: 7), "7")
+    }
+
+    func testEveryStringIsTranslated() {
+        for key in S.allCases {
+            XCTAssertNotNil(Loc.en[key], "missing English: \(key)")
+            XCTAssertNotNil(Loc.fa[key], "missing Persian: \(key)")
+        }
+        XCTAssertEqual(Loc(lang: .fa).episodeTag(season: 2, episode: "5"), "فصل ۲ · قسمت ۵")
+        XCTAssertEqual(Loc(lang: .en).episodeTag(season: 2, episode: "5"), "S2 · E5")
+    }
+}

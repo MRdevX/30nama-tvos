@@ -1,0 +1,212 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "DISCOVER_MENU",
+ "result": {
+  "genres": [
+   {
+    "id": 3362,
+    "name": "درام",
+    "slug": "drama",
+    "count": 46219,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/drama-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/genres/drama-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/drama-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/genres/drama-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 3359,
+    "name": "کمدی",
+    "slug": "comedy",
+    "count": 27903,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/comedy-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/genres/comedy-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/comedy-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/genres/comedy-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 3378,
+    "name": "هیجان انگیز",
+    "slug": "thriller",
+    "count": 18355,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/thriller-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/genres/thriller-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/genres/thriller-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/genres/thriller-f_30NAMA.jpg"
+     }
+    }
+   }
+  ],
+  "categories": [
+   {
+    "id": 15,
+    "name": "فیلم",
+    "slug": "movies",
+    "count": 84827,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/movie-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/movie-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/movie-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/movie-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 16,
+    "name": "سریال",
+    "slug": "series",
+    "count": 19521,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/series-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/series-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/series-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/series-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 17,
+    "name": "انیمه",
+    "slug": "anime",
+    "count": 2435,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/anime-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/anime-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/anime-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/anime-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 67378,
+    "name": "مینی‌سریال",
+    "slug": "miniseries",
+    "count": 1209,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/miniseries-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/miniseries-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/miniseries-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/miniseries-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 3328,
+    "name": "پیشنهادی",
+    "slug": "suggested",
+    "count": 645,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 241,
+    "name": "کنسرت",
+    "slug": "concert",
+    "count": 611,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/concert-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/concert-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/concert-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/concert-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 17023,
+    "name": "به‌زودی",
+    "slug": "coming-soon",
+    "count": 403,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 246,
+    "name": "مراسم",
+    "slug": "ceremony",
+    "count": 245,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/ceremony-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/ceremony-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/ceremony-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/ceremony-f_30NAMA.jpg"
+     }
+    }
+   },
+   {
+    "id": 148571,
+    "name": "جدیدترین‌ها",
+    "slug": "new-releases",
+    "count": 181,
+    "image": {
+     "webp": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.webp",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.webp"
+     },
+     "jpg": {
+      "thumb": "https://cdn-world.hana-api.com/application/types/others-t_30NAMA.jpg",
+      "full": "https://cdn-world.hana-api.com/application/types/others-f_30NAMA.jpg"
+     }
+    }
+   }
+  ],
+  "cache": {
+   "cache": true,
+   "cache_key": "CDN-WORLD.HANA-API.COM_WEBTV_FA_GUEST_MENU_v2",
+   "cache_time": "720 min"
+  }
+ },
+ "action": null,
+ "seo": null,
+ "timestamp": 1791815671
+}

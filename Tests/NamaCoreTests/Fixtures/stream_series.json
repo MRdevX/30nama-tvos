@@ -1,0 +1,195 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": null,
+ "result": {
+  "hls": [
+   {
+    "info": {
+     "file_id": "201",
+     "post_id": "77",
+     "season": "2",
+     "episode": "1",
+     "title": {
+      "english": "Episode 2x1",
+      "local": null
+     },
+     "duration": 2640
+    },
+    "options": {
+     "token": "tok",
+     "intro_start": "00:00:05",
+     "intro_end": "00:01:30",
+     "previously_start": 0,
+     "previously_end": 0,
+     "end": "00:41:10"
+    },
+    "file": {
+     "m3u8": [
+      {
+       "label": "Auto",
+       "default": "https://example.com/auto.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": " https://example.com/1080.m3u8 "
+      }
+     ],
+     "subtitle": {
+      "fa": "https://example.com/fa.vtt",
+      "en": [
+       {
+        "url": "https://example.com/en.vtt"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "info": {
+     "file_id": "111",
+     "post_id": "77",
+     "season": "1",
+     "episode": "11,12",
+     "title": {
+      "english": "Episode 1x11,12",
+      "local": null
+     },
+     "duration": 2640
+    },
+    "options": {
+     "token": "tok",
+     "intro_start": "00:00:05",
+     "intro_end": "00:01:30",
+     "previously_start": 0,
+     "previously_end": 0,
+     "end": "00:41:10"
+    },
+    "file": {
+     "m3u8": [
+      {
+       "label": "Auto",
+       "default": "https://example.com/auto.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": " https://example.com/1080.m3u8 "
+      }
+     ],
+     "subtitle": {
+      "fa": "https://example.com/fa.vtt",
+      "en": [
+       {
+        "url": "https://example.com/en.vtt"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "info": {
+     "file_id": "102",
+     "post_id": "77",
+     "season": "1",
+     "episode": "2",
+     "title": {
+      "english": "Episode 1x2",
+      "local": null
+     },
+     "duration": 2640
+    },
+    "options": {
+     "token": "tok",
+     "intro_start": "00:00:05",
+     "intro_end": "00:01:30",
+     "previously_start": 0,
+     "previously_end": 0,
+     "end": "00:41:10"
+    },
+    "file": {
+     "m3u8": [
+      {
+       "label": "Auto",
+       "default": "https://example.com/auto.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": " https://example.com/1080.m3u8 "
+      }
+     ],
+     "subtitle": {
+      "fa": "https://example.com/fa.vtt",
+      "en": [
+       {
+        "url": "https://example.com/en.vtt"
+       }
+      ]
+     }
+    }
+   },
+   {
+    "info": {
+     "file_id": "110",
+     "post_id": "77",
+     "season": "1",
+     "episode": "10",
+     "title": {
+      "english": "Episode 1x10",
+      "local": null
+     },
+     "duration": 2640
+    },
+    "options": {
+     "token": "tok",
+     "intro_start": "00:00:05",
+     "intro_end": "00:01:30",
+     "previously_start": 0,
+     "previously_end": 0,
+     "end": "00:41:10"
+    },
+    "file": {
+     "m3u8": [
+      {
+       "label": "Auto",
+       "default": "https://example.com/auto.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": " https://example.com/1080.m3u8 "
+      }
+     ],
+     "subtitle": {
+      "fa": "https://example.com/fa.vtt",
+      "en": [
+       {
+        "url": "https://example.com/en.vtt"
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "continue_watching": {
+   "file_id": "102",
+   "time": 600,
+   "duration": 2640
+  }
+ }
+}

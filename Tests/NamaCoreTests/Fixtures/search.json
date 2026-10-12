@@ -1,0 +1,261 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "جستجو",
+ "result": {
+  "posts": [
+   {
+    "id": 12382,
+    "post_type": "title",
+    "options": {
+     "title_type": "series",
+     "stream": true,
+     "is_series": true,
+     "persian_subtitle": true,
+     "exclusive_subtitle": false,
+     "coming_soon": false,
+     "free_download": false,
+     "free_stream": false
+    },
+    "info": {
+     "seasons": 5,
+     "year": 2008,
+     "year_end": 2013,
+     "budget": null,
+     "age": "TV-MA",
+     "time": {
+      "default": 48,
+      "others": []
+     }
+    },
+    "release_dates": {
+     "screen": null,
+     "web": null,
+     "bluray": null
+    },
+    "network": [
+     "AMC"
+    ],
+    "title": {
+     "english": "Breaking Bad 2008",
+     "local": "بریکینگ بد"
+    },
+    "plot": {
+     "english": "Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.",
+     "local": "والتر وایت، یک معلم شیمی در نیومکزیکو، متوجه می‌شود که به سرطان پیشرفته مرحله ۳ مبتلا است و تنها دو سال دیگر برای زندگی فرصت دارد. این موضوع باعث می‌شود که او با حسی از بی‌باکی و تمایلی سیری‌ناپذیر، برای تأمین آینده مالی خانواده‌اش به هر قیمتی، وارد دنیای خطرناک مواد مخدر و جرم و جنایت شود."
+    },
+    "genre": [
+     {
+      "name": "جنایی",
+      "slug": "crime"
+     },
+     {
+      "name": "درام",
+      "slug": "drama"
+     },
+     {
+      "name": "هیجان انگیز",
+      "slug": "thriller"
+     }
+    ],
+    "cast": [],
+    "crew": {
+     "director": null,
+     "creator": null,
+     "writer": null
+    },
+    "image": {
+     "poster": {
+      "preview": "b3IMipk=0;^N000M00-90V-o",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/poster/3012382-s_30NAMA.webp?3",
+       "medium": "https://cdn-world.hana-api.com/poster/3012382-m_30NAMA.webp?3",
+       "large": "https://cdn-world.hana-api.com/poster/3012382-l_30NAMA.webp?3",
+       "big": "https://cdn-world.hana-api.com/poster/3012382-b_30NAMA.webp?3"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/poster/3012382-s_30NAMA.jpg?3",
+       "medium": "https://cdn-world.hana-api.com/poster/3012382-m_30NAMA.jpg?3",
+       "large": "https://cdn-world.hana-api.com/poster/3012382-l_30NAMA.jpg?3",
+       "big": "https://cdn-world.hana-api.com/poster/3012382-b_30NAMA.jpg?3"
+      }
+     },
+     "cover": {
+      "webp": "https://cdn-world.hana-api.com/cover/3012382_30NAMA.webp?3",
+      "jpg": "https://cdn-world.hana-api.com/cover/3012382_30NAMA.jpg?3"
+     }
+    },
+    "score": {
+     "30nama": {
+      "score": 9.22,
+      "votes": 2398,
+      "top_100": null
+     },
+     "imdb": {
+      "link": "https://www.imdb.com/title/tt0903747",
+      "score": 9.5,
+      "votes": 2599467,
+      "top_250": "1"
+     },
+     "rottentomatoes": {
+      "link": "https://www.rottentomatoes.com/tv/breaking_bad",
+      "score": 96
+     },
+     "metacritic": {
+      "link": "https://www.metacritic.com/tv/breaking-bad",
+      "score": 87
+     }
+    },
+    "country": null,
+    "language": {
+     "primary": null,
+     "others": null
+    },
+    "list": {
+     "watchlist": 3660,
+     "favorite": 5634
+    },
+    "air": {
+     "air_status": "تمام شده",
+     "air_data": " (فصل 5)",
+     "next_episode_caption": null,
+     "next_episode_date": null
+    },
+    "note": {
+     "main": null,
+     "update": null
+    },
+    "subtitle": null,
+    "seo": null
+   },
+   {
+    "id": 228418,
+    "post_type": "title",
+    "options": {
+     "title_type": "movie",
+     "stream": true,
+     "is_series": false,
+     "persian_subtitle": true,
+     "exclusive_subtitle": false,
+     "coming_soon": false,
+     "free_download": false,
+     "free_stream": false
+    },
+    "info": {
+     "seasons": null,
+     "year": 2019,
+     "year_end": null,
+     "budget": "$6,000,000",
+     "age": "TV-MA",
+     "time": {
+      "default": 122,
+      "others": []
+     }
+    },
+    "release_dates": {
+     "screen": null,
+     "web": null,
+     "bluray": null
+    },
+    "title": {
+     "english": "El Camino: A Breaking Bad Movie 2019",
+     "local": "ال کامینو: فیلم برکینگ بد"
+    },
+    "plot": {
+     "english": "After escaping Jack and his gang, Jesse Pinkman goes on the run from the police and tries to escape his own inner turmoil.",
+     "local": "جسی پینکمن پس از آنکه موفق می‌شود از چنگ جک و دار و دسته‌اش بگریزد، باید با پلیس و آشفتگی‌های درونی خود کنار بیاید."
+    },
+    "genre": [
+     {
+      "name": "اکشن",
+      "slug": "action"
+     },
+     {
+      "name": "جنایی",
+      "slug": "crime"
+     },
+     {
+      "name": "درام",
+      "slug": "drama"
+     }
+    ],
+    "cast": [],
+    "crew": {
+     "director": null,
+     "creator": null,
+     "writer": null
+    },
+    "image": {
+     "poster": {
+      "preview": "bRIr1_%M~qxtyXtR%hRjIUxu",
+      "webp": {
+       "small": "https://cdn-world.hana-api.com/poster/30228418-s_30NAMA.webp?3",
+       "medium": "https://cdn-world.hana-api.com/poster/30228418-m_30NAMA.webp?3",
+       "large": "https://cdn-world.hana-api.com/poster/30228418-l_30NAMA.webp?3",
+       "big": "https://cdn-world.hana-api.com/poster/30228418-b_30NAMA.webp?3"
+      },
+      "jpg": {
+       "small": "https://cdn-world.hana-api.com/poster/30228418-s_30NAMA.jpg?3",
+       "medium": "https://cdn-world.hana-api.com/poster/30228418-m_30NAMA.jpg?3",
+       "large": "https://cdn-world.hana-api.com/poster/30228418-l_30NAMA.jpg?3",
+       "big": "https://cdn-world.hana-api.com/poster/30228418-b_30NAMA.jpg?3"
+      }
+     },
+     "cover": {
+      "webp": "https://cdn-world.hana-api.com/cover/30228418_30NAMA.webp?3",
+      "jpg": "https://cdn-world.hana-api.com/cover/30228418_30NAMA.jpg?3"
+     }
+    },
+    "score": {
+     "30nama": {
+      "score": 7.99,
+      "votes": 308,
+      "top_100": null
+     },
+     "imdb": {
+      "link": "https://www.imdb.com/title/tt9243946",
+      "score": 7.3,
+      "votes": 315092,
+      "top_250": null
+     },
+     "rottentomatoes": {
+      "link": "https://www.rottentomatoes.com/m/el_camino_a_breaking_bad_movie",
+      "score": 93
+     },
+     "metacritic": {
+      "link": "https://www.metacritic.com/movie/el-camino-a-breaking-bad-movie",
+      "score": 72
+     }
+    },
+    "country": null,
+    "language": {
+     "primary": null,
+     "others": null
+    },
+    "list": {
+     "watchlist": 918,
+     "favorite": 942
+    },
+    "air": {
+     "air_status": "",
+     "air_data": null,
+     "next_episode_caption": null,
+     "next_episode_date": null
+    },
+    "note": {
+     "main": null,
+     "update": null
+    },
+    "subtitle": null,
+    "seo": null
+   }
+  ],
+  "page": 1,
+  "pages": 4,
+  "total": 86
+ },
+ "action": null,
+ "seo": null,
+ "timestamp": 1791815674
+}

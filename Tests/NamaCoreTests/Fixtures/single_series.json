@@ -1,0 +1,277 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "Single",
+ "result": {
+  "id": 469773,
+  "post_type": "title",
+  "options": {
+   "title_type": "anime",
+   "stream": true,
+   "is_series": true,
+   "persian_subtitle": true,
+   "exclusive_subtitle": false,
+   "coming_soon": false,
+   "free_download": false,
+   "free_stream": false
+  },
+  "info": {
+   "seasons": 3,
+   "year": 2021,
+   "year_end": null,
+   "budget": null,
+   "age": "TV-14",
+   "time": {
+    "default": 24,
+    "others": []
+   }
+  },
+  "release_dates": {
+   "screen": null,
+   "web": null,
+   "bluray": null
+  },
+  "network": [
+   "Bilibili"
+  ],
+  "title": {
+   "english": "Link Click 2021",
+   "local": null
+  },
+  "plot": {
+   "english": "Using superpowers to enter their clientele's photos one by one, Cheng Xiaoshi and Lu Guang take their work seriously at \"Time Photo Studio,\" a small photography shop set in the backdrop of a modern metropolis.",
+   "local": "چنگ شیاشی و لو گوانگ در «آتلیه عکاسی زمان»، یک مغازه عکاسی کوچک در پس‌زمینه‌ی یک کلانشهر مدرن، کار خود را بسیار جدی می‌گیرند. آنها با استفاده از قدرت‌های فراطبیعی‌شان، یک به یک وارد عکس‌های مشتریان خود می‌شوند."
+  },
+  "genre": [
+   {
+    "name": "اکشن",
+    "slug": "action"
+   },
+   {
+    "name": "فانتزی",
+    "slug": "fantasy"
+   },
+   {
+    "name": "علمی تخیلی",
+    "slug": "sci-fi"
+   }
+  ],
+  "cast": [
+   {
+    "name": "Zeno Robinson",
+    "as": "Guang Lu / Lu Guang",
+    "imdb": "nm0954900",
+    "order": 0
+   },
+   {
+    "name": "Tianxiang Yang",
+    "as": "Guang Lu",
+    "imdb": "nm7476590",
+    "order": 1
+   },
+   {
+    "name": "Yi Li",
+    "as": "Dr. Qin / Liu's Driver",
+    "imdb": "nm16273134",
+    "order": 2
+   },
+   {
+    "name": "Alejandro Saab",
+    "as": "Xiaoshi Cheng / Cheng Xiaoshi",
+    "imdb": "nm5260806",
+    "order": 3
+   },
+   {
+    "name": "Suzie Yeung",
+    "as": "Ling Qiao / Additional Voices / Qiao Ling",
+    "imdb": "nm10931637",
+    "order": 4
+   },
+   {
+    "name": "Kelsey Maher",
+    "as": "Citizens / boba girl / Boba Girl",
+    "imdb": "nm8934331",
+    "order": 5
+   }
+  ],
+  "crew": {
+   "director": null,
+   "creator": null,
+   "writer": null
+  },
+  "image": {
+   "poster": {
+    "preview": "bNB|Q$E1-=kYyZM_Ny%2OZs:",
+    "webp": {
+     "small": "https://cdn-world.hana-api.com/poster/30469773-s_30NAMA.webp?3",
+     "medium": "https://cdn-world.hana-api.com/poster/30469773-m_30NAMA.webp?3",
+     "large": "https://cdn-world.hana-api.com/poster/30469773-l_30NAMA.webp?3",
+     "big": "https://cdn-world.hana-api.com/poster/30469773-b_30NAMA.webp?3"
+    },
+    "jpg": {
+     "small": "https://cdn-world.hana-api.com/poster/30469773-s_30NAMA.jpg?3",
+     "medium": "https://cdn-world.hana-api.com/poster/30469773-m_30NAMA.jpg?3",
+     "large": "https://cdn-world.hana-api.com/poster/30469773-l_30NAMA.jpg?3",
+     "big": "https://cdn-world.hana-api.com/poster/30469773-b_30NAMA.jpg?3"
+    }
+   },
+   "cover": {
+    "webp": "https://cdn-world.hana-api.com/cover/30469773_30NAMA.webp?3",
+    "jpg": "https://cdn-world.hana-api.com/cover/30469773_30NAMA.jpg?3"
+   }
+  },
+  "score": {
+   "30nama": {
+    "score": 7.91,
+    "votes": 11,
+    "top_100": null
+   },
+   "imdb": {
+    "link": "https://www.imdb.com/title/tt14976292",
+    "score": 8.5,
+    "votes": 7639,
+    "top_250": ""
+   },
+   "myanimelist": {
+    "link": "https://myanimelist.net/anime/61607/Shiguang_Dailiren_III",
+    "score": 8.72,
+    "votes": 181913
+   }
+  },
+  "country": [
+   {
+    "name": "Japan",
+    "code": "JP",
+    "order": 0
+   },
+   {
+    "name": "China",
+    "code": "CN",
+    "order": 1
+   }
+  ],
+  "language": {
+   "primary": {
+    "name": "Mandarin",
+    "code": "cmn",
+    "order": 0
+   },
+   "others": [
+    {
+     "name": "Chinese",
+     "code": "zh",
+     "order": 1
+    },
+    {
+     "name": "Japanese",
+     "code": "ja",
+     "order": 2
+    },
+    {
+     "name": "English",
+     "code": "en",
+     "order": 3
+    },
+    {
+     "name": "Spanish",
+     "code": "es",
+     "order": 4
+    },
+    {
+     "name": "French",
+     "code": "fr",
+     "order": 5
+    },
+    {
+     "name": "Italian",
+     "code": "it",
+     "order": 6
+    },
+    {
+     "name": "Portuguese",
+     "code": "pt",
+     "order": 7
+    },
+    {
+     "name": "Arabic",
+     "code": "ar",
+     "order": 8
+    }
+   ]
+  },
+  "list": {
+   "watchlist": 195,
+   "favorite": 184
+  },
+  "air": {
+   "air_status": "در حال پخش",
+   "air_data": null,
+   "next_episode_caption": "قسمت بعدی",
+   "next_episode_date": {
+    "g": "16 October 2026 Friday",
+    "j": "۲۴ مهر ۱۴۰۵ جمعه"
+   }
+  },
+  "note": {
+   "main": null,
+   "update": [
+    {
+     "title": "اضافه شدن قسمت جدید",
+     "content": "اپیزود 10 فصل 3",
+     "date": {
+      "g": "2026-10-09 22:41:36",
+      "j": "۱۴۰۵-۰۷-۱۷ ۲۲:۴۱:۳۶"
+     }
+    },
+    {
+     "title": "اضافه شدن قسمت جدید",
+     "content": "اپیزود 9 فصل 3",
+     "date": {
+      "g": "2026-10-02 10:54:38",
+      "j": "۱۴۰۵-۰۷-۱۰ ۱۰:۵۴:۳۸"
+     }
+    }
+   ]
+  },
+  "subtitle": [
+   {
+    "language": "فارسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/link-click-shiguan-daliren/season-1/farsi_persian",
+    "single": false,
+    "type": null,
+    "season": 1
+   },
+   {
+    "language": "انگلیسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/link-click-shiguan-daliren/season-1/english",
+    "single": false,
+    "type": null,
+    "season": 1
+   },
+   {
+    "language": "فارسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/link-click-2nd-season-shiguang-dailiren-ii/season-2/farsi_persian",
+    "single": false,
+    "type": null,
+    "season": 2
+   },
+   {
+    "language": "انگلیسی",
+    "quality": "تمام کیفیت‌ها",
+    "link": "https://subsource.net/subtitles/link-click-2nd-season-shiguang-dailiren-ii/season-2/english",
+    "single": false,
+    "type": null,
+    "season": 2
+   }
+  ],
+  "seo": null,
+  "continue_watching": null
+ },
+ "action": null,
+ "seo": null,
+ "timestamp": 1791815722
+}

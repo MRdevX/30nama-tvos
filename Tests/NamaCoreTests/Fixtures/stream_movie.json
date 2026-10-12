@@ -1,0 +1,24 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": null,
+ "result": {
+  "hls": [
+   {
+    "info": {
+     "file_id": 9001,
+     "post_id": 685883
+    },
+    "options": {
+     "token": "tok"
+    },
+    "file": {
+     "m3u8": "https://example.com/movie.m3u8",
+     "subtitle": {}
+    }
+   }
+  ],
+  "continue_watching": null
+ }
+}

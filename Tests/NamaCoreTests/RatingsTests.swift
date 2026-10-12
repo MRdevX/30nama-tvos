@@ -1,0 +1,87 @@
+import XCTest
+@testable import NamaCore
+
+final class RatingsTests: XCTestCase {
+    private func post(_ id: Int, _ genres: [String], imdb: Double? = nil, soon: Bool = false) -> Post {
+        var json: [String: Any] = [
+            "id": id,
+            "title": ["english": "Title \(id) 2020", "local": "عنوان \(id)"],
+            "info": ["year": 2020],
+            "options": ["is_series": id % 2 == 0, "coming_soon": soon],
+            "genre": genres.map { ["name": $0.capitalized, "slug": $0] },
+            "image": ["poster": ["preview": "00OZZy", "webp": ["large": "https://example.com/\(id)-l.webp", "big": "https://example.com/\(id)-b.webp"]]],
+        ]
+        if let imdb { json["score"] = ["imdb": ["score": imdb]] }
+        return Post(JSON(json))!
+    }
+
+    func testRateChangeAndRemove() {
+        var book = RatingBook()
+        book.rate(post(1, ["drama"]), stars: 4.3)
+        XCTAssertEqual(book.stars(for: 1), 4.5, "snaps to the nearest half star")
+        book.rate(post(1, ["drama"]), stars: 9)
+        XCTAssertEqual(book.stars(for: 1), 5)
+        book.rate(post(2, ["comedy"]), stars: 0)
+        XCTAssertEqual(book.stars(for: 2), 0.5)
+        XCTAssertEqual(book.count, 2)
+        XCTAssertEqual(book.average, 2.75)
+        book.rate(post(1, ["drama"]), stars: nil)
+        XCTAssertNil(book.stars(for: 1))
+        XCTAssertEqual(book.count, 1)
+        XCTAssertNil(RatingBook().average)
+    }
+
+    func testSurvivesEncoding() throws {
+        var book = RatingBook()
+        book.rate(post(1, ["drama", "crime"]), stars: 4, date: Date(timeIntervalSince1970: 1_000))
+        book.rate(post(2, ["comedy"]), stars: 2.5, date: Date(timeIntervalSince1970: 2_000))
+        let restored = try XCTUnwrap(RatingBook(data: book.encoded()))
+        XCTAssertEqual(restored, book)
+        XCTAssertEqual(restored.newestFirst.map(\.postID), [2, 1])
+        XCTAssertNil(RatingBook(data: Data("not json".utf8)))
+    }
+
+    func testRatedTitleCanBeShownAgain() throws {
+        let original = post(8, ["drama"])
+        let shown = try XCTUnwrap(Rating(post: original, stars: 4).post)
+        XCTAssertEqual(shown.id, 8)
+        XCTAssertEqual(shown.title(.en), "Title 8")
+        XCTAssertEqual(shown.title(.fa), "عنوان 8")
+        XCTAssertTrue(shown.isSeries)
+        XCTAssertEqual(shown.poster.big, original.poster.big)
+        XCTAssertEqual(shown.poster.blurhash, "00OZZy")
+        XCTAssertEqual(shown.genres.map(\.slug), ["drama"])
+    }
+
+    func testTasteShrinksThinEvidence() {
+        var book = RatingBook()
+        for id in 1...6 { book.rate(post(id, ["drama"]), stars: 4) }
+        book.rate(post(7, ["western"]), stars: 5)
+        book.rate(post(8, ["horror"]), stars: 1)
+        let taste = book.taste()
+        XCTAssertEqual(taste["drama"] ?? 0, 0.75, accuracy: 0.0001)       // six at +1, over 6 + 2
+        XCTAssertEqual(taste["western"] ?? 0, 2.0 / 3, accuracy: 0.0001)  // one at +2, over 1 + 2
+        XCTAssertLessThan(taste["horror"] ?? 0, 0)
+        XCTAssertEqual(book.favoriteGenres(), ["drama", "western"], "many good dramas outrank one great western")
+    }
+
+    func testRecommendations() {
+        var book = RatingBook()
+        XCTAssertTrue(book.recommend(from: [post(50, ["drama"])]).isEmpty, "nothing to go on yet")
+        for id in 1...4 { book.rate(post(id, ["drama"]), stars: 4.5) }
+        book.rate(post(5, ["horror"]), stars: 1)
+
+        let picks = book.recommend(from: [
+            post(1, ["drama"]),                 // already rated
+            post(10, ["drama"], imdb: 7.0),
+            post(11, ["drama"], imdb: 8.5),     // same fit, better regarded
+            post(12, ["horror"], imdb: 9.0),    // disliked genre
+            post(13, ["drama", "horror"]),      // mixed: averages out below a pure drama
+            post(14, ["musical"]),              // unknown genre: no opinion
+            post(15, ["drama"], soon: true),    // not out yet
+            post(11, ["drama"], imdb: 8.5),     // duplicate candidate
+        ])
+        XCTAssertEqual(picks.map(\.id), [11, 10, 13])
+        XCTAssertEqual(book.recommend(from: [post(10, ["drama"]), post(11, ["drama"])], limit: 1).count, 1)
+    }
+}

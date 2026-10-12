@@ -1,0 +1,8 @@
+// Copy to Local.xcconfig (git-ignored).
+
+// Your Apple developer team, needed to run on a real Apple TV.
+DEVELOPMENT_TEAM =
+
+// Optional: TMDB v4 "API Read Access Token" (themoviedb.org > Settings > API). Turns on the
+// trending rows on Home. Leave empty to keep TMDB off.
+TMDB_TOKEN =

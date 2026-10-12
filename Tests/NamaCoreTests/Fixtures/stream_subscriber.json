@@ -1,0 +1,293 @@
+{
+ "status": 200,
+ "success": true,
+ "error": false,
+ "msg": "تماشای آنلاین",
+ "result": {
+  "continue_watching": {
+   "display_time": "00:01:00",
+   "episode": 6,
+   "episode_name": "فصل 1 - قسمت 6",
+   "episode_number": 6,
+   "file_id": 182995,
+   "post_id": 708066,
+   "progress": 1,
+   "season": 1,
+   "time": 60
+  },
+  "hls": [
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "3",
+     "episode_name": "فصل 1 - قسمت 3",
+     "episode_number": 3,
+     "file_id": 182992,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   },
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "1",
+     "episode_name": "فصل 1 - قسمت 1",
+     "episode_number": 1,
+     "file_id": 182990,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   },
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "2",
+     "episode_name": "فصل 1 - قسمت 2",
+     "episode_number": 2,
+     "file_id": 182991,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   },
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "6",
+     "episode_name": "فصل 1 - قسمت 6",
+     "episode_number": 6,
+     "file_id": 182995,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   },
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "4",
+     "episode_name": "فصل 1 - قسمت 4",
+     "episode_number": 4,
+     "file_id": 182993,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   },
+   {
+    "file": {
+     "m3u8": [
+      {
+       "label": "خودکار",
+       "default": "https://example.com/auto.m3u8",
+       "2ch": "https://example.com/auto-2ch.m3u8",
+       "6ch": "https://example.com/auto-6ch.m3u8"
+      },
+      {
+       "label": "720p",
+       "default": "https://example.com/720.m3u8",
+       "2ch": "https://example.com/720-2ch.m3u8",
+       "6ch": "https://example.com/720-6ch.m3u8"
+      },
+      {
+       "label": "1080p",
+       "default": "https://example.com/1080.m3u8",
+       "2ch": "https://example.com/1080-2ch.m3u8",
+       "6ch": "https://example.com/1080-6ch.m3u8"
+      }
+     ],
+     "subtitle": {
+      "en": "https://example.com/en.vtt",
+      "fa": "https://example.com/fa.vtt"
+     }
+    },
+    "info": {
+     "episode": "5",
+     "episode_name": "فصل 1 - قسمت 5",
+     "episode_number": 5,
+     "file_id": 182994,
+     "season": 1
+    },
+    "options": {
+     "end": "00:55:28",
+     "intro_end": "00:06:53",
+     "intro_start": "00:06:43",
+     "previously_end": null,
+     "previously_start": null,
+     "token": "t"
+    }
+   }
+  ],
+  "image": {
+   "cover": {
+    "jpg": "https://example.com/c.jpg",
+    "webp": "https://example.com/c.webp"
+   }
+  },
+  "info": {
+   "post_id": 708066,
+   "title": {
+    "english": "Love Story 2026",
+    "local": null
+   }
+  },
+  "vast2": "https://example.com/vast"
+ }
+}

@@ -1,0 +1,5 @@
+// Build settings that differ per machine. Real values go in Local.xcconfig, which is git-ignored:
+// copy Local.example.xcconfig to Local.xcconfig and fill it in.
+DEVELOPMENT_TEAM =
+TMDB_TOKEN =
+#include? "Local.xcconfig"
