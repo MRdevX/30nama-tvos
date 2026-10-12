@@ -4,5 +4,5 @@
 DEVELOPMENT_TEAM =
 
 // Optional: TMDB v4 "API Read Access Token" (themoviedb.org > Settings > API). Turns on the
-// trending rows on Home. Leave empty to keep TMDB off.
+// trending rows on Home. Leave empty to keep TMDB off. It is only built into Debug builds.
 TMDB_TOKEN =

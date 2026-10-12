@@ -118,8 +118,8 @@ struct RootView: View {
     }
 }
 
-/// Opening title: light gathers behind the wordmark, the letters resolve out of a blur one by
-/// one and a glint runs across them. To leave, the red line under the wordmark runs out to both
+/// Opening title: light gathers behind the 30nama logo, the cube and then the name resolve out of
+/// a blur and a glint runs across them. To leave, the red line under the logo runs out to both
 /// edges of the screen and the card parts along it like a curtain, uncovering the app.
 struct SplashView: View {
     /// Start the exit.
@@ -131,15 +131,14 @@ struct SplashView: View {
     @State private var lit = false
     @State private var glint = false
 
-    private let letters: [(Character, Color)] = [
-        ("3", Theme.accent), ("0", Theme.accent),
-        ("n", Theme.text1), ("a", Theme.text1), ("m", Theme.text1), ("a", Theme.text1),
-    ]
+    /// Where the cube ends and the name begins, as a fraction of the logo's width.
+    private let logoSplit = 0.29
+    private let logoHeight: CGFloat = 190
 
     var body: some View {
         GeometryReader { geo in
             let size = geo.size
-            // The seam sits where the line is: just under the wordmark.
+            // The seam sits where the line is: just under the logo.
             let seam = size.height / 2 + 84
             let parting = Animation.timingCurve(0.7, 0, 0.2, 1, duration: 0.75).delay(0.38)
             ZStack(alignment: .top) {
@@ -186,8 +185,8 @@ struct SplashView: View {
                 .offset(x: lit ? 260 : 0, y: lit ? -70 : 0)
             wordmark
                 .overlay {
-                    // The glint: a white copy of the wordmark seen through a moving slit.
-                    wordmark.foregroundStyle(.white).mask {
+                    // The glint: a white silhouette of the logo seen through a moving slit.
+                    logo.renderingMode(.template).resizable().scaledToFit().frame(height: logoHeight).foregroundStyle(.white).mask {
                         LinearGradient(colors: [.clear, .white, .clear], startPoint: .leading, endPoint: .trailing)
                             .frame(width: 150)
                             .rotationEffect(.degrees(18))
@@ -200,20 +199,29 @@ struct SplashView: View {
         .animation(.easeOut(duration: 1.6), value: lit)
     }
 
+    private var logo: Image { Image("Logo") }
+
+    /// The logo in its two parts, so the cube can arrive a beat before the name.
     private var wordmark: some View {
-        HStack(spacing: 0) {
-            ForEach(Array(letters.enumerated()), id: \.offset) { index, letter in
-                Text(String(letter.0))
-                    .foregroundStyle(letter.1)
-                    .blur(radius: lit ? 0 : 18)
-                    .opacity(lit ? 1 : 0)
-                    .offset(y: lit ? 0 : 44)
-                    .scaleEffect(lit ? 1 : 1.3)
-                    .animation(.spring(response: 0.62, dampingFraction: 0.68).delay(0.2 + Double(index) * 0.075), value: lit)
-            }
+        ZStack {
+            logoPart(from: 0, to: logoSplit, delay: 0.2)
+            logoPart(from: logoSplit, to: 1, delay: 0.42)
         }
-        .font(.app(132, .heavy))
         .environment(\.layoutDirection, .leftToRight)
+    }
+
+    private func logoPart(from start: Double, to end: Double, delay: Double) -> some View {
+        logo.resizable().scaledToFit().frame(height: logoHeight)
+            .mask {
+                GeometryReader { geo in
+                    Rectangle().frame(width: geo.size.width * (end - start)).offset(x: geo.size.width * start)
+                }
+            }
+            .blur(radius: lit ? 0 : 18)
+            .opacity(lit ? 1 : 0)
+            .offset(y: lit ? 0 : 44)
+            .scaleEffect(lit ? 1 : 1.3)
+            .animation(.spring(response: 0.62, dampingFraction: 0.68).delay(delay), value: lit)
     }
 }
 

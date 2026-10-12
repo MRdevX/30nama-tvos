@@ -3,3 +3,9 @@
 DEVELOPMENT_TEAM =
 TMDB_TOKEN =
 #include? "Local.xcconfig"
+
+// What is written into the app. Anything inside an app can be read back out of it, so the token
+// only goes into Debug builds, which stay on the developer's own machine. A Release build (archive,
+// TestFlight, App Store) is made without it and has the trending rows off.
+TMDB_TOKEN_IN_APP =
+TMDB_TOKEN_IN_APP[config=Debug] = $(TMDB_TOKEN)

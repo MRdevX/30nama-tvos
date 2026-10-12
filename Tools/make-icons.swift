@@ -1,4 +1,4 @@
-// Draws the layered tvOS app icon and the Top Shelf images into the asset catalog.
+// Draws the layered tvOS app icon, the Top Shelf images and the in-app logo into the asset catalog.
 // Run from the project root:  swift Tools/make-icons.swift
 import AppKit
 
@@ -108,4 +108,27 @@ json([
     ],
     "info": info,
 ], "Contents.json")
-print("Wrote \(catalog.path)")
+// The logo on its own, for the opening title.
+func logoImage(height: Int) -> Data {
+    let width = height * logo.pixelsWide / logo.pixelsHigh
+    let rep = NSBitmapImageRep(
+        bitmapDataPlanes: nil, pixelsWide: width, pixelsHigh: height, bitsPerSample: 8, samplesPerPixel: 4,
+        hasAlpha: true, isPlanar: false, colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0)!
+    NSGraphicsContext.saveGraphicsState()
+    NSGraphicsContext.current = NSGraphicsContext(bitmapImageRep: rep)
+    NSGraphicsContext.current!.imageInterpolation = .high
+    logo.draw(in: CGRect(x: 0, y: 0, width: width, height: height), from: .zero, operation: .sourceOver, fraction: 1, respectFlipped: false, hints: nil)
+    NSGraphicsContext.restoreGraphicsState()
+    return rep.representation(using: .png, properties: [:])!
+}
+
+let logoSet = catalog.deletingLastPathComponent().appendingPathComponent("Logo.imageset")
+try! FileManager.default.createDirectory(at: logoSet, withIntermediateDirectories: true)
+var logoImages: [[String: String]] = []
+for (scale, height) in [("1x", 208), ("2x", 416)] {
+    try! logoImage(height: height).write(to: logoSet.appendingPathComponent("logo@\(scale).png"))
+    logoImages.append(["filename": "logo@\(scale).png", "idiom": "universal", "scale": scale])
+}
+try! JSONSerialization.data(withJSONObject: ["images": logoImages, "info": info], options: [.prettyPrinted, .sortedKeys])
+    .write(to: logoSet.appendingPathComponent("Contents.json"))
+print("Wrote \(catalog.path) and \(logoSet.lastPathComponent)")

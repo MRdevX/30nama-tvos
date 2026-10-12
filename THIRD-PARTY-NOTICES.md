@@ -32,8 +32,8 @@ SOFTWARE.
 
 ## 30nama logo
 
-`Tools/30nama-logo.png`, and the app icon and Top Shelf images drawn from it, show the 30nama
-logo. It was enlarged from two files served by 30nama.com: the cube from `safari-pinned-tab.svg`,
+`Tools/30nama-logo.png`, and the app icon, Top Shelf images and opening title drawn from it, show
+the 30nama logo. It was enlarged from two files served by 30nama.com: the cube from `safari-pinned-tab.svg`,
 the wordmark from the logo image on the site's loading page. The name and logo belong to 30nama.
 They are used only to show which service the app connects to; this app is not made, endorsed or
 approved by 30nama.

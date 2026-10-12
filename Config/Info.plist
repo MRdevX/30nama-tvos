@@ -8,7 +8,7 @@
 		<true/>
 	</dict>
 	<key>TMDBToken</key>
-	<string>$(TMDB_TOKEN)</string>
+	<string>$(TMDB_TOKEN_IN_APP)</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>
