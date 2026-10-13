@@ -178,7 +178,7 @@ struct ProfileView: View {
                                 .foregroundStyle(Theme.text2)
                             RoundedRectangle(cornerRadius: 8, style: .continuous)
                                 .fill(count > 0 ? AnyShapeStyle(LinearGradient(colors: [Color(hex: 0xFFE27A), ProfileView.gold], startPoint: .top, endPoint: .bottom)) : AnyShapeStyle(Color.white.opacity(0.1)))
-                                .frame(width: 54, height: max(8, 92 * CGFloat(count) / CGFloat(most)))
+                                .frame(width: 54, height: max(8, 110 * CGFloat(count) / CGFloat(most)))
                             HStack(spacing: 4) {
                                 Text(loc.num(index + 1)).font(.app(20, .semibold))
                                 Image(systemName: "star.fill").font(.system(size: 14, weight: .bold))
@@ -199,7 +199,7 @@ struct ProfileView: View {
             Spacer(minLength: 0)
         }
         .padding(30)
-        .frame(maxWidth: .infinity, minHeight: 250, maxHeight: 250, alignment: .topLeading)
+        .frame(maxWidth: .infinity, minHeight: 300, maxHeight: 300, alignment: .topLeading)
         .glass(RoundedRectangle(cornerRadius: Theme.tileRadius + 6, style: .continuous))
     }
 
