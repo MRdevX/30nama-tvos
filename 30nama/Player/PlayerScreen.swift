@@ -5,7 +5,7 @@ import AVKit
 ///
 /// `AVPlayerViewController` brings the transport bar, Siri Remote scrubbing, audio-track selection
 /// and the info panel. On top of that this adds what 30nama's streams need: side-loaded WebVTT
-/// subtitles, skip-intro and next-episode buttons, a quality menu and progress reporting.
+/// subtitles, skip-intro and next-episode prompts, a quality menu and progress reporting.
 struct PlayerScreen: UIViewControllerRepresentable {
     let request: PlaybackRequest
 
@@ -27,7 +27,7 @@ struct PlayerScreen: UIViewControllerRepresentable {
 }
 
 @MainActor
-final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
+final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate, UIGestureRecognizerDelegate {
     private let post: Post
     private let items: [StreamItem]
     private let app: AppModel
@@ -62,8 +62,14 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
     private var barShowing = false
     private var episodesShowing = false
     private var shownCue = ""
-    /// Which contextual button is up ("intro", "recap", "next" or none), to avoid resetting it every tick.
-    private var actionKey = ""
+    /// The skip or next-episode offer the picture calls for at this moment, shown or not.
+    private var due: PlayerPrompt.Kind?
+    private let prompt = PlayerPrompt()
+    private var promptHost: UIHostingController<AnyView>?
+    private var focusObserver: NSObjectProtocol?
+    /// Focus is on one of the player's own controls (a tab of the info panel, a menu button)
+    /// rather than on the picture.
+    private var controlsFocused = false
 
     private var loc: Loc { app.loc }
     private var current: StreamItem { items[index] }
@@ -85,6 +91,7 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         controller.delegate = self
         self.controller = controller
         installSubtitleLabel(in: controller)
+        installPrompt(in: controller)
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .moviePlayback)
 
         timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(value: 1, timescale: 4), queue: .main) { [weak self] time in
@@ -104,6 +111,7 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         if let timeObserver { player.removeTimeObserver(timeObserver) }
         if let endObserver { NotificationCenter.default.removeObserver(endObserver) }
         if let activeObserver { NotificationCenter.default.removeObserver(activeObserver) }
+        if let focusObserver { NotificationCenter.default.removeObserver(focusObserver) }
         blurAnimator?.stopAnimation(true)
         statusObservation = nil
         heartbeat?.invalidate()
@@ -160,8 +168,8 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         }
         player.play()
 
-        actionKey = ""
-        controller?.contextualActions = []
+        due = nil
+        prompt.offer = nil
         refreshMenus()
         attachArtwork(to: item)
     }
@@ -212,24 +220,85 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         let cue = track.text(at: time)
         if cue != shownCue { showCue(cue) }
 
-        var key = ""
-        var actions: [UIAction] = []
         if let skip = current.skipTarget(at: time) {
-            key = skip.isIntro ? "intro" : "recap"
-            actions = [UIAction(title: loc(skip.isIntro ? .skipIntro : .skipRecap), image: UIImage(systemName: "forward.fill")) { [weak self] _ in
-                self?.player.seek(to: CMTime(seconds: skip.to, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero)
-            }]
+            due = skip.isIntro ? .intro : .recap
         } else if let credits = current.creditsStart, credits > 0, time >= credits, index + 1 < items.count {
-            key = "next"
-            actions = [UIAction(title: loc(.nextEpisode), image: UIImage(systemName: "forward.end.fill")) { [weak self] _ in
-                guard let self else { return }
-                self.start(self.index + 1)
-            }]
+            due = .next
+        } else {
+            due = nil
         }
-        if key != actionKey {
-            actionKey = key
-            controller?.contextualActions = actions
+        showPrompt(at: time)
+    }
+
+    // MARK: Skip and next-episode prompt
+
+    /// The prompt is not the system's contextual button, whose look cannot be changed: it is a
+    /// pill of the app's own, drawn over the picture, and the select button is taken over while
+    /// it is up. It steps aside whenever the transport bar or the info panel is in use, so that
+    /// select goes to them as usual.
+    private func installPrompt(in controller: AVPlayerViewController) {
+        guard let overlay = controller.contentOverlayView else { return }
+        let host = UIHostingController(rootView: AnyView(PlayerPromptView(prompt: prompt)
+            .environment(\.layoutDirection, loc.lang.isRTL ? .rightToLeft : .leftToRight)))
+        host.view.backgroundColor = .clear
+        host.view.isUserInteractionEnabled = false
+        host.view.frame = overlay.bounds
+        host.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        overlay.addSubview(host.view)
+        promptHost = host
+
+        let select = UITapGestureRecognizer(target: self, action: #selector(acceptPrompt))
+        select.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
+        select.delegate = self
+        controller.view.addGestureRecognizer(select)
+
+        // While nothing of the player's is on screen, focus rests on a view the size of the
+        // picture. Anything smaller holding focus is one of its controls.
+        focusObserver = NotificationCenter.default.addObserver(forName: UIFocusSystem.didUpdateNotification, object: nil, queue: .main) { [weak self] note in
+            let context = note.userInfo?[UIFocusSystem.focusUpdateContextUserInfoKey] as? UIFocusUpdateContext
+            MainActor.assumeIsolated {
+                // The info panel is not inside the player's own view, so this goes by the window.
+                guard let self, let view = context?.nextFocusedItem as? UIView, let window = view.window, window == self.controller?.view.window else { return }
+                let frame = view.convert(view.bounds, to: window)
+                self.controlsFocused = frame.width < window.bounds.width * 0.9 || frame.height < window.bounds.height * 0.9
+                self.showPrompt(at: self.player.currentTime().seconds)
+            }
         }
+    }
+
+    private func showPrompt(at time: Double) {
+        guard let due, !barShowing, !controlsFocused else {
+            if prompt.offer != nil { prompt.offer = nil }
+            return
+        }
+        var offer = PlayerPrompt.Offer(kind: due, title: loc(due == .intro ? .skipIntro : due == .recap ? .skipRecap : .nextEpisode))
+        if due == .next, app.settings.autoplayNext, let credits = current.creditsStart,
+           let length = player.currentItem?.duration.seconds, length.isFinite, length > credits {
+            // In steps, so the pill is not redrawn four times a second.
+            offer.countdown = (min(1, max(0, (time - credits) / (length - credits))) * 50).rounded() / 50
+        }
+        if prompt.offer != offer { prompt.offer = offer }
+    }
+
+    @objc private func acceptPrompt() {
+        guard let kind = prompt.offer?.kind else { return }
+        switch kind {
+        case .intro, .recap:
+            guard let skip = current.skipTarget(at: player.currentTime().seconds) else { return }
+            player.seek(to: CMTime(seconds: skip.to, preferredTimescale: 600), toleranceBefore: .zero, toleranceAfter: .zero)
+        case .next:
+            start(index + 1)
+        }
+    }
+
+    /// Select belongs to the prompt only while it is on screen.
+    nonisolated func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        MainActor.assumeIsolated { prompt.offer != nil }
+    }
+
+    /// The player's own handling of select waits for the prompt to pass on it.
+    nonisolated func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy other: UIGestureRecognizer) -> Bool {
+        true
     }
 
     // MARK: Menus and info panel
@@ -446,6 +515,7 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
     ) {
         MainActor.assumeIsolated {
             barShowing = visible
+            showPrompt(at: player.currentTime().seconds)
             // The panels live in the bar, so they are gone when it is.
             if !visible { episodesShowing = false }
             subtitleBottom?.constant = subtitleLift
