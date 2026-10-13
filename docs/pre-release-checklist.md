@@ -26,6 +26,11 @@
 - [ ] در CloudKit Console نوع رکورد `Ratings` را از محیط Development به Production منتقل کنید. بیلدهای TestFlight با محیط Production کار می‌کنند و بدون این کار، همگام‌سازی ریت‌ها «همگام نشد» نشان می‌دهد.
 - [ ] برنامه را یک بار روی Apple TV واقعی ببینید: همگام‌سازی iCloud و پخش هنوز روی دستگاه واقعی دیده نشده‌اند.
 
+## دو نکته که اولین آپلود را رد کرد
+
+- **tvOS برای برنامه‌ای که iCloud دارد قابلیت Push Notifications هم می‌خواهد.** بدون آن، App Store Connect بیلد را با خطای «Missing Entitlement: aps-environment» رد می‌کند. این قابلیت باید روی شناسهٔ برنامه روشن باشد؛ کلیدش در `Config/30nama.entitlements` هست.
+- **امضای خودکار Xcode برای آرشیو، یک Apple TV ثبت‌شده در حساب می‌خواهد.** اگر دستگاهی ندارید، یک گواهی Apple Distribution و یک پروفایل «tvOS App Store» بسازید و آرشیو را با امضای دستی بگیرید: `CODE_SIGN_STYLE=Manual`، `CODE_SIGN_IDENTITY="Apple Distribution"` و `PROVISIONING_PROFILE_SPECIFIER` برابر نام پروفایل.
+
 ## فرستادن بیلد
 
 ۱. در Xcode مقصد را «Any tvOS Device» بگذارید و Product ← Archive را بزنید.
