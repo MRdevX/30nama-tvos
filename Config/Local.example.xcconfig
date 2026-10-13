@@ -2,7 +2,3 @@
 
 // Your Apple developer team, needed to run on a real Apple TV.
 DEVELOPMENT_TEAM =
-
-// Optional: TMDB v4 "API Read Access Token" (themoviedb.org > Settings > API). Turns on the
-// trending rows on Home. Leave empty to keep TMDB off. It is only built into Debug builds.
-TMDB_TOKEN =

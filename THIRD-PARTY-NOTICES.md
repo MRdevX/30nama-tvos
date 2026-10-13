@@ -2,9 +2,9 @@
 
 ## 30nama-tizenos
 
-`30nama/Core/Trending.swift` is a Swift port of `tizen-app/js/tmdb.js` from
-[msharifi99/30nama-tizenos](https://github.com/msharifi99/30nama-tizenos), and the app as a whole
-follows that client's use of the 30nama API. It is used under the MIT License:
+This app was written from the Tizen client
+[msharifi99/30nama-tizenos](https://github.com/msharifi99/30nama-tizenos) and follows its use of
+the 30nama API. That client is under the MIT License:
 
 ```
 MIT License
@@ -43,8 +43,3 @@ approved by 30nama.
 The fonts in `30nama/Resources/Fonts` are [Vazirmatn](https://github.com/rastikerdar/vazirmatn),
 licensed under the SIL Open Font License 1.1. The licence text is in
 `30nama/Resources/Fonts/Vazirmatn-OFL.txt`.
-
-## TMDB
-
-The optional trending rows use the TMDB API. This product uses the TMDB API but is not endorsed or
-certified by TMDB.

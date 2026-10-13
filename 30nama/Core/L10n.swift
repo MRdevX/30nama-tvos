@@ -8,7 +8,6 @@ enum S: String, CaseIterable {
     case signIn, scanTitle, step1, step2, step3, orEnterCode, waiting, expired, codeFailed, guest, newCode, welcome
     case loading, error, tryAgain, retry, noConnection
     case continueWatching, newReleases, suggested, top10, featured
-    case trendingWeek, newSeries, popularMovies, tmdb, tmdbOn, tmdbOff, tmdbCredit
     case cloudRatings, cloudSynced, cloudSyncing, cloudSignedOut, cloudFailed
     case play, resume, details, episodes, season, seasonsCount, episode, nowPlaying, cast
     case persianSub, minLeft, min, free, soon
@@ -42,9 +41,6 @@ struct Loc: Equatable {
         switch key {
         case "continue": return self(.continueWatching)
         case "for_you": return self(.forYou)
-        case "tm_trend": return self(.trendingWeek)
-        case "tm_fresh": return self(.newSeries)
-        case "tm_pop": return self(.popularMovies)
         case "new_releases": return self(.newReleases)
         case "suggested": return self(.suggested)
         case "top_10": return self(.top10)
@@ -88,9 +84,6 @@ struct Loc: Equatable {
         .retry: "Retry", .noConnection: "Could not reach 30nama",
         .continueWatching: "Continue watching", .newReleases: "New releases", .suggested: "Suggested",
         .top10: "Top 10", .featured: "Featured",
-        .trendingWeek: "Trending this week", .newSeries: "New & returning series",
-        .popularMovies: "Popular movies now", .tmdb: "TMDB trending rows", .tmdbOn: "On", .tmdbOff: "Not set up",
-        .tmdbCredit: "Trending lists come from TMDB. This app is not endorsed or certified by TMDB.",
         .cloudRatings: "Ratings in iCloud", .cloudSynced: "Up to date", .cloudSyncing: "Syncing…",
         .cloudSignedOut: "Not signed in to iCloud", .cloudFailed: "Could not sync",
         .play: "Play", .resume: "Resume", .details: "Details", .episodes: "Episodes", .season: "Season",
@@ -140,9 +133,6 @@ struct Loc: Equatable {
         .retry: "تلاش دوباره", .noConnection: "اتصال به ۳۰نما برقرار نشد",
         .continueWatching: "ادامه تماشا", .newReleases: "تازه‌ها", .suggested: "پیشنهادی",
         .top10: "۱۰ برتر", .featured: "ویژه",
-        .trendingWeek: "پرطرفدار این هفته", .newSeries: "سریال‌های جدید و ادامه‌دار",
-        .popularMovies: "فیلم‌های محبوب امروز", .tmdb: "ردیف‌های ترند TMDB", .tmdbOn: "فعال", .tmdbOff: "تنظیم نشده",
-        .tmdbCredit: "فهرست‌های ترند از TMDB می‌آید. این برنامه مورد تأیید TMDB نیست.",
         .cloudRatings: "ریت‌ها در iCloud", .cloudSynced: "همگام", .cloudSyncing: "در حال همگام‌سازی…",
         .cloudSignedOut: "وارد iCloud نشده‌اید", .cloudFailed: "همگام نشد",
         .play: "پخش", .resume: "ادامه", .details: "جزئیات", .episodes: "قسمت‌ها", .season: "فصل",

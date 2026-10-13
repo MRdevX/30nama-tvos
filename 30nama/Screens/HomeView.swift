@@ -12,8 +12,6 @@ struct HomeView: View {
     @State private var feed: HomeFeed?
     @State private var continuing: [Post] = []
     @State private var forYou: [Post] = []
-    /// TMDB's rows, each added once its titles have been found on 30nama.
-    @State private var trending: [HomeSection] = []
     @State private var failed = false
     @State private var heroIndex = 0
     /// The card in focus, when focus is in the rows.
@@ -62,7 +60,7 @@ struct HomeView: View {
             continuing.isEmpty ? nil : HomeSection(key: "continue", posts: continuing),
             forYou.isEmpty ? nil : HomeSection(key: "for_you", posts: forYou),
         ].compactMap { $0 }
-        return lead + trending + feed.sections
+        return lead + feed.sections
     }
 
     /// What the rows are scrolled to: the hero ("top"), a row, or the sign-in note below the last row.
@@ -98,7 +96,6 @@ struct HomeView: View {
             try? await Task.sleep(for: .milliseconds(140))
             if !Task.isCancelled { settled = browsing }
         }
-        .task(id: feed == nil) { await loadTrending() }
         .task(id: visible) { await rotateHero() }
         .onAppear { visible = true }
         .onDisappear { visible = false }
@@ -132,16 +129,6 @@ struct HomeView: View {
             if focus == nil { focus = loaded.heroes.isEmpty ? nil : .play }
         } catch {
             failed = true
-        }
-    }
-
-    /// Fills in the trending rows after the page itself is up; they take a search per title the first time.
-    private func loadTrending() async {
-        guard feed != nil, trending.isEmpty, let service = app.trending else { return }
-        for row in TrendingRow.allCases {
-            let posts = await service.row(row)
-            if Task.isCancelled { return }
-            if !posts.isEmpty { trending.append(HomeSection(key: row.sectionKey, posts: posts)) }
         }
     }
 
@@ -227,8 +214,6 @@ struct HomeView: View {
             .onChange(of: scrollTarget) { _, target in
                 withAnimation(Theme.glide) { scroll(proxy, to: target) }
             }
-            // A trending row that arrives above the focused one pushes it down: put it back at once.
-            .onChange(of: trending.count) { scroll(proxy, to: scrollTarget) }
         }
     }
 
@@ -294,14 +279,10 @@ struct HomeView: View {
                 .frame(height: Layout.headerHeight)
                 .padding(.leading, Theme.edge)
             ScrollView(.horizontal) {
-                Group {
-                    if section.key.hasPrefix("tm_") {
-                        // A lazy stack added after the page is up has made none of its cards by the
-                        // time focus arrives, and focus lands on the empty row instead of a card.
-                        // The trending rows arrive late and are short, so they are built whole.
-                        HStack(alignment: .top, spacing: 24) { cards(in: section) }
-                    } else {
-                        LazyHStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) { cards(in: section) }
+                LazyHStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) {
+                    ForEach(Array(section.posts.enumerated()), id: \.element.id) { index, post in
+                        card(post, in: section, rank: index + 1)
+                            .focused($focus, equals: .card(row: section.key, id: post.id))
                     }
                 }
                 .padding(.horizontal, Theme.edge)
@@ -312,13 +293,6 @@ struct HomeView: View {
         .opacity(above ? 0.45 : 1)
         .animation(.easeOut(duration: 0.3), value: above)
         .focusSection()
-    }
-
-    private func cards(in section: HomeSection) -> some View {
-        ForEach(Array(section.posts.enumerated()), id: \.element.id) { index, post in
-            card(post, in: section, rank: index + 1)
-                .focused($focus, equals: .card(row: section.key, id: post.id))
-        }
     }
 
     @ViewBuilder

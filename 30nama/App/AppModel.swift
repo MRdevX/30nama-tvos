@@ -177,9 +177,7 @@ final class AppModel {
 
     enum CloudState: Equatable { case idle, syncing, synced, signedOut, failed }
 
-    let api: APIClient
-    /// TMDB's trending rows. Nil when no TMDB token was built in.
-    let trending: Trending?
+    let api = APIClient()
 
     @ObservationIgnored private var homeCache: (feed: HomeFeed, at: Date, lang: Lang)?
     @ObservationIgnored private var menuCache: (menu: Menu, lang: Lang)?
@@ -190,24 +188,6 @@ final class AppModel {
 
     var loc: Loc { Loc(lang: settings.lang) }
     var isLoggedIn: Bool { user != nil }
-
-    init() {
-        let api = APIClient()
-        self.api = api
-        var token = Bundle.main.object(forInfoDictionaryKey: "TMDBToken") as? String ?? ""
-        var transport: Transport?
-        var cache = "trending.json"
-        #if DEBUG
-        if let mock = DemoTrending.transport { (token, transport, cache) = ("mock", mock, "trending-mock.json") }
-        #endif
-        trending = Trending(
-            token: token,
-            cacheFile: FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0].appendingPathComponent(cache),
-            transport: transport,
-            search: { query in
-                try await api.get("search", ["query": query, "streamonly": "0", "page": "1"], background: true)
-            })
-    }
 
     // MARK: Boot and session
 

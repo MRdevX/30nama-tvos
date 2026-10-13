@@ -120,6 +120,15 @@ final class APIClientTests: XCTestCase {
         XCTAssertEqual(net.calls, ["observer"])
     }
 
+    func testAnEmptyAnswerToAProgressReportIsASuccess() async throws {
+        let net = FakeNetwork { _, _ in (204, "", [:]) }
+        let api = APIClient(config: config(), transport: net.transport)
+        await api.useHost("https://h.example.com/api/v2")
+        let answer = try await api.call("observer", ["time": "10"])
+        XCTAssertTrue(answer.success)
+        XCTAssertEqual(net.calls, ["observer"])
+    }
+
     func testServerErrorSurfacesItsMessage() async {
         let net = FakeNetwork { _, _ in (200, #"{"success":false,"msg":"nope","result":null}"#, [:]) }
         let api = APIClient(config: config(), transport: net.transport)

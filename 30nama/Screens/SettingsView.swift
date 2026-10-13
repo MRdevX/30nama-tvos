@@ -46,13 +46,6 @@ struct SettingsView: View {
                     group(loc(.about)) {
                         fact(loc(.version), Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
                         fact(loc(.apiHost), hostName)
-                        fact(loc(.tmdb), loc(app.trending == nil ? .tmdbOff : .tmdbOn))
-                        if app.trending != nil {
-                            Text(loc(.tmdbCredit))
-                                .font(.app(22))
-                                .foregroundStyle(Theme.text3)
-                                .padding(.horizontal, 32)
-                        }
                     }
                 }
                 .padding(.horizontal, 30)
