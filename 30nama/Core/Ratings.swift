@@ -164,6 +164,24 @@ struct RatingBook: Equatable {
         taste().filter { $0.value > 0 }.sorted { ($0.value, $0.key) > ($1.value, $1.key) }.prefix(limit).map(\.key)
     }
 
+    /// The genres the user rates highest, by name, with how strongly each is liked next to the
+    /// strongest (0...1).
+    func favoriteGenreNames(limit: Int = 4) -> [(name: String, strength: Double)] {
+        let taste = taste()
+        var names: [String: String] = [:]
+        for r in newestFirst.reversed() { for g in r.genres { names[g.slug] = g.name } }
+        let top = favoriteGenres(limit: limit)
+        guard let best = top.first.flatMap({ taste[$0] }), best > 0 else { return [] }
+        return top.map { (names[$0] ?? $0, (taste[$0] ?? 0) / best) }
+    }
+
+    /// How many titles got one star, two, and so on up to five. Half stars count with the star above.
+    func spread() -> [Int] {
+        var counts = [Int](repeating: 0, count: 5)
+        for r in ratings.values { counts[min(4, max(0, Int(r.stars.rounded(.up)) - 1))] += 1 }
+        return counts
+    }
+
     /// How well a title fits the user's taste. Positive means "probably yes".
     func affinity(for post: Post, taste: [String: Double]) -> Double {
         let known = post.genres.compactMap { taste[$0.slug] }

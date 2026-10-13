@@ -9,6 +9,7 @@ enum S: String, CaseIterable {
     case loading, error, tryAgain, retry, noConnection
     case continueWatching, newReleases, suggested, top10, featured
     case cloudRatings, cloudSynced, cloudSyncing, cloudSignedOut, cloudFailed
+    case watchlist, favorites, yourTaste, howYouRate, subscriptionUntil, daysLeft
     case play, resume, details, episodes, season, seasonsCount, episode, nowPlaying, cast
     case persianSub, minLeft, min, free, soon
     case loginToStream, loginToWatch, noStream, comingSoonNote
@@ -68,6 +69,20 @@ struct Loc: Equatable {
         return s
     }
 
+    /// The account's plan as 30nama names it: "golden" -> "طلایی".
+    func accountType(_ raw: String) -> String {
+        let fa = ["golden": "طلایی", "gold": "طلایی", "silver": "نقره‌ای", "bronze": "برنزی", "red": "قرمز", "free": "رایگان"]
+        return lang == .fa ? (fa[raw.lowercased()] ?? raw) : raw.prefix(1).uppercased() + raw.dropFirst()
+    }
+
+    /// "Subscription until 2028-07-15 · 641 days left", in the calendar of the interface language.
+    func subscriptionLine(_ user: User, now: Date = Date()) -> String? {
+        guard let day = (lang == .fa ? user.expiryLocal.map { $0.replacingOccurrences(of: "-", with: "/") } : nil) ?? user.expiry else { return nil }
+        var line = "\(self(.subscriptionUntil)) \(num(day))"
+        if let days = user.daysLeft(now: now) { line += " · \(num(days)) \(self(.daysLeft))" }
+        return line
+    }
+
     /// "S2 · E5" / "فصل ۲ · قسمت ۵"
     func episodeTag(season: Int, episode: String) -> String {
         lang == .fa ? "فصل \(num(season)) · قسمت \(num(episode))" : "S\(season) · E\(episode)"
@@ -86,6 +101,8 @@ struct Loc: Equatable {
         .top10: "Top 10", .featured: "Featured",
         .cloudRatings: "Ratings in iCloud", .cloudSynced: "Up to date", .cloudSyncing: "Syncing…",
         .cloudSignedOut: "Not signed in to iCloud", .cloudFailed: "Could not sync",
+        .watchlist: "Watchlist", .favorites: "Favourites", .yourTaste: "Your taste", .howYouRate: "How you rate",
+        .subscriptionUntil: "Subscription until", .daysLeft: "days left",
         .play: "Play", .resume: "Resume", .details: "Details", .episodes: "Episodes", .season: "Season",
         .seasonsCount: "seasons", .episode: "Episode", .nowPlaying: "Now playing", .cast: "Cast",
         .persianSub: "Persian subtitles", .minLeft: "min left", .min: "min", .free: "FREE", .soon: "SOON",
@@ -135,6 +152,8 @@ struct Loc: Equatable {
         .top10: "۱۰ برتر", .featured: "ویژه",
         .cloudRatings: "ریت‌ها در iCloud", .cloudSynced: "همگام", .cloudSyncing: "در حال همگام‌سازی…",
         .cloudSignedOut: "وارد iCloud نشده‌اید", .cloudFailed: "همگام نشد",
+        .watchlist: "لیست تماشا", .favorites: "علاقه‌مندی‌ها", .yourTaste: "سلیقهٔ تو", .howYouRate: "ریت‌هایت در یک نگاه",
+        .subscriptionUntil: "اعتبار اشتراک تا", .daysLeft: "روز مانده",
         .play: "پخش", .resume: "ادامه", .details: "جزئیات", .episodes: "قسمت‌ها", .season: "فصل",
         .seasonsCount: "فصل", .episode: "قسمت", .nowPlaying: "در حال پخش", .cast: "بازیگران",
         .persianSub: "زیرنویس فارسی", .minLeft: "دقیقه مانده", .min: "دقیقه", .free: "رایگان", .soon: "به‌زودی",

@@ -118,7 +118,8 @@ enum SessionStore {
         let d = UserDefaults.standard
         // Without Keychain access (unsigned development builds) fall back to the defaults store.
         d.set(stored ? nil : user.token, forKey: "session.token")
-        d.set(["id": user.id, "name": user.name, "type": user.type, "expiry": user.expiry].compactMapValues { $0 }, forKey: "session.profile")
+        d.set(["id": user.id, "name": user.name, "type": user.type, "expiry": user.expiry, "expiryLocal": user.expiryLocal,
+               "avatar": user.avatar?.absoluteString].compactMapValues { $0 }, forKey: "session.profile")
     }
 
     static func load() -> User? {
@@ -133,7 +134,8 @@ enum SessionStore {
         }
         guard let token = token ?? d.string(forKey: "session.token"), !token.isEmpty else { return nil }
         let p = d.dictionary(forKey: "session.profile") as? [String: String] ?? [:]
-        return User(JSON(["user_session": token, "user_id": p["id"], "user_name": p["name"], "user_type": p["type"], "user_expire": p["expiry"]].compactMapValues { $0 }))
+        return User(JSON(["user_session": token, "user_id": p["id"], "user_name": p["name"], "user_type": p["type"], "user_expire": p["expiry"],
+                          "user_expire_local": p["expiryLocal"], "user_avatar": p["avatar"]].compactMapValues { $0 }))
     }
 
     static func clear() {
@@ -317,6 +319,18 @@ final class AppModel {
     func continueWatching() async -> [Post] {
         guard isLoggedIn, let result = try? await api.get("continue_watching") else { return [] }
         return Post.continueList(result)
+    }
+
+    /// One of the user's own lists on 30nama ("watchlist" or "favorite"), newest addition first.
+    func myList(_ group: String) async -> [Post] {
+        guard isLoggedIn, let result = try? await api.get("user_list", ["action": "list", "group": group, "page": "1", "orderby": "add_list", "order": "DESC"]) else { return [] }
+        return Post.list(result)
+    }
+
+    /// How many titles the user keeps in each of their 30nama lists.
+    func myListSizes() async -> [String: Int] {
+        guard isLoggedIn, let result = try? await api.get("user_mylist") else { return [:] }
+        return (result.object ?? [:]).mapValues { $0["post"].array.count }
     }
 
     func menu() async throws -> Menu {

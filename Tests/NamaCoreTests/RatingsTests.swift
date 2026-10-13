@@ -110,6 +110,21 @@ final class RatingsTests: XCTestCase {
         XCTAssertEqual(book.favoriteGenres(), ["drama", "western"], "many good dramas outrank one great western")
     }
 
+    func testTasteAtAGlance() {
+        var book = RatingBook()
+        XCTAssertTrue(book.favoriteGenreNames().isEmpty)
+        XCTAssertEqual(book.spread(), [0, 0, 0, 0, 0])
+        for id in 1...4 { book.rate(post(id, ["drama"]), stars: 4.5) }
+        book.rate(post(5, ["comedy"]), stars: 4)
+        book.rate(post(6, ["horror"]), stars: 1)
+        book.rate(post(7, ["horror"]), stars: 0.5)
+        let favourites = book.favoriteGenreNames()
+        XCTAssertEqual(favourites.map(\.name), ["Drama", "Comedy"], "by name, strongest first, disliked genres left out")
+        XCTAssertEqual(favourites.first?.strength, 1)
+        XCTAssertLessThan(favourites[1].strength, 1)
+        XCTAssertEqual(book.spread(), [2, 0, 0, 1, 4], "half stars count with the star above")
+    }
+
     func testRecommendations() {
         var book = RatingBook()
         XCTAssertTrue(book.recommend(from: [post(50, ["drama"])]).isEmpty, "nothing to go on yet")

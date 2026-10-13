@@ -503,7 +503,11 @@ struct User: Equatable {
     var id: String?
     var name: String?
     var type: String?
+    /// The day the subscription ends, as "2028-07-15".
     var expiry: String?
+    /// The same day in the Persian calendar ("۱۴۰۷-۰۴-۲۵"), when the server gives it.
+    var expiryLocal: String?
+    var avatar: URL?
 
     /// The profile is returned bare, or wrapped as `{user: {...}}`, with or without the session token.
     init?(_ j: JSON, fallbackToken: String? = nil) {
@@ -513,7 +517,28 @@ struct User: Equatable {
         id = u["user_id"].text ?? u["id"].text
         name = u["user_name"].text ?? u["user_email"].text
         type = u["user_type"].text
-        expiry = User.formatExpiry(u["user_expire"])
+        // A subscriber's expiry arrives as `{days, g, j}`: the date and time in both calendars.
+        let expire = u["user_expire"]
+        if expire.object != nil {
+            expiry = expire["g"].text.map { String($0.prefix(10)) }
+            expiryLocal = expire["j"].text.map { String($0.prefix(10)) }
+        } else {
+            expiry = User.formatExpiry(expire)
+            expiryLocal = u["user_expire_local"].text
+        }
+        avatar = u["user_avatar"].url
+    }
+
+    /// Whole days until the subscription ends, counting today; nil when the end is unknown.
+    func daysLeft(now: Date = Date()) -> Int? {
+        guard let expiry else { return nil }
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .gregorian)
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = TimeZone(identifier: "UTC")
+        f.dateFormat = "yyyy-MM-dd"
+        guard let end = f.date(from: expiry) else { return nil }
+        return max(0, Int((end.timeIntervalSince(now) / 86400).rounded(.up)))
     }
 
     /// Expiry arrives as a unix timestamp (seconds or milliseconds) or as preformatted text.

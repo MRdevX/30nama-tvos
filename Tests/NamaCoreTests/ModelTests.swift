@@ -185,6 +185,18 @@ final class ModelTests: XCTestCase {
         XCTAssertEqual(bare?.id, "12")
         XCTAssertEqual(bare?.expiry, "2027-01-15")
 
+        // What a subscriber's profile carries.
+        let subscriber = User(JSON(["user_session": "s", "user_type": "golden", "user_avatar": "https://example.com/a.png",
+                                    "user_expire": ["days": 641, "g": "2028-07-15 15:50:45", "j": "۱۴۰۷-۰۴-۲۵ ۱۵:۵۰:۴۵"]] as [String: Any]))
+        XCTAssertEqual(subscriber?.expiry, "2028-07-15")
+        XCTAssertEqual(subscriber?.expiryLocal, "۱۴۰۷-۰۴-۲۵")
+        XCTAssertEqual(subscriber?.avatar?.lastPathComponent, "a.png")
+        let midOctober2026 = Date(timeIntervalSince1970: 1_791_849_600)
+        XCTAssertEqual(subscriber?.daysLeft(now: midOctober2026), 641)
+        XCTAssertEqual(Loc(lang: .fa).subscriptionLine(subscriber!, now: midOctober2026), "اعتبار اشتراک تا ۱۴۰۷/۰۴/۲۵ · ۶۴۱ روز مانده")
+        XCTAssertEqual(Loc(lang: .en).subscriptionLine(subscriber!, now: midOctober2026), "Subscription until 2028-07-15 · 641 days left")
+        XCTAssertNil(Loc(lang: .fa).subscriptionLine(User(JSON(["token": "t"] as [String: Any]))!))
+
         let wrapped = User(JSON(["user": ["user_session": "zzz", "user_email": "a@b.c"]] as [String: Any]))
         XCTAssertEqual(wrapped?.name, "a@b.c")
 
