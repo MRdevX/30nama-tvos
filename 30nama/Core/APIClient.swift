@@ -104,7 +104,7 @@ actor APIClient {
     private(set) var host: String?
     private var key: String
     private var token = ""
-    private var language = Lang.fa.rawValue
+    private var language = Lang.en.catalogue
     private var onSessionExpired: (@Sendable () -> Void)?
     private var checkingSession = false
 
@@ -131,7 +131,7 @@ actor APIClient {
     }
 
     func setToken(_ token: String?) { self.token = token ?? "" }
-    func setLanguage(_ lang: Lang) { language = lang.rawValue }
+    func setLanguage(_ lang: Lang) { language = lang.catalogue }
     func setSessionExpiredHandler(_ handler: (@Sendable () -> Void)?) { onSessionExpired = handler }
     func useHost(_ host: String) { self.host = host }
 

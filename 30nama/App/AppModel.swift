@@ -3,7 +3,8 @@ import Security
 
 /// User preferences, persisted in `UserDefaults`.
 struct Settings: Equatable {
-    var lang: Lang = .fa
+    /// English until the user picks another.
+    var lang: Lang = .en
     /// The user chose to browse without signing in.
     var guest = false
     /// "off", "fa" or "en".

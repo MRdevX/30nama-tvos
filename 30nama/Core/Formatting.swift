@@ -25,6 +25,8 @@ enum Fmt {
         switch lang {
         case .en:
             return [h > 0 ? "\(h)h" : nil, m > 0 ? "\(m)m" : nil].compactMap { $0 }.joined(separator: " ")
+        case .ar:
+            return [h > 0 ? "\(h) س" : nil, m > 0 ? "\(m) د" : nil].compactMap { $0 }.joined(separator: " ")
         case .fa:
             let parts = [h > 0 ? "\(h) ساعت" : nil, m > 0 ? "\(m) دقیقه" : nil].compactMap { $0 }
             return persianDigits(parts.joined(separator: " و "))

@@ -253,21 +253,28 @@ struct MainView: View {
                 .tabItem { Text(loc(.browse)) }
                 .tag(Tab.browse)
             NavigationStack { SearchView().withRoutes() }
-                .tabItem { iconTab(loc(.search), "magnifyingglass") }
+                .tabItem { iconTab(loc(.search), "magnifyingglass", titled: roomy) }
                 .tag(Tab.search)
             NavigationStack { SettingsView() }
-                .tabItem { iconTab(loc(.settings), "gearshape") }
+                .tabItem { iconTab(loc(.settings), "gearshape", titled: roomy) }
                 .tag(Tab.settings)
         }
         // A new language or account means a different catalogue: rebuild every tab.
         .id(app.contentVersion)
     }
 
+    /// Persian titles are short enough for all eight tabs to fit the bar. English and Arabic ones
+    /// are not, so there search and settings go by their icons alone, as is usual on tvOS.
+    private var roomy: Bool { loc.lang == .fa }
+
     /// A tab with an icon. The tab bar always puts the icon to the left of the title, whatever the
-    /// reading direction, so in Persian the two are drawn as one image with the icon leading.
+    /// reading direction, so in a right-to-left language the two are drawn as one image with the
+    /// icon leading.
     @ViewBuilder
-    private func iconTab(_ title: String, _ symbol: String) -> some View {
-        if loc.lang.isRTL, let image = MainView.tabImage(title, symbol) {
+    private func iconTab(_ title: String, _ symbol: String, titled: Bool = true) -> some View {
+        if !titled {
+            Image(systemName: symbol).accessibilityLabel(title)
+        } else if loc.lang.isRTL, let image = MainView.tabImage(title, symbol) {
             Image(uiImage: image)
         } else {
             Label(title, systemImage: symbol)

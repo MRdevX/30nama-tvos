@@ -92,7 +92,7 @@ extension Font {
 // MARK: - Environment
 
 private struct LocKey: EnvironmentKey {
-    static let defaultValue = Loc(lang: .fa)
+    static let defaultValue = Loc(lang: .en)
 }
 
 private struct CalmKey: EnvironmentKey {

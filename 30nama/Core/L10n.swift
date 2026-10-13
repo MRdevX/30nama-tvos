@@ -31,7 +31,7 @@ struct Loc: Equatable {
     let lang: Lang
 
     func callAsFunction(_ key: S) -> String {
-        (lang == .fa ? Loc.fa[key] : Loc.en[key]) ?? Loc.en[key] ?? key.rawValue
+        (lang == .fa ? Loc.fa[key] : lang == .ar ? Loc.ar[key] : Loc.en[key]) ?? Loc.en[key] ?? key.rawValue
     }
 
     /// Digits in the interface language.
@@ -64,7 +64,7 @@ struct Loc: Equatable {
     func kindLine(_ post: Post) -> String {
         var s = kind(post.kind)
         if post.isSeries, let n = post.seasons, n > 0 {
-            s += " · " + (lang == .fa ? "\(num(n)) \(self(.seasonsCount))" : "\(n) \(n == 1 ? "season" : self(.seasonsCount))")
+            s += " · " + (lang == .en ? "\(n) \(n == 1 ? "season" : self(.seasonsCount))" : "\(num(n)) \(self(.seasonsCount))")
         }
         return s
     }
@@ -72,7 +72,12 @@ struct Loc: Equatable {
     /// The account's plan as 30nama names it: "golden" -> "طلایی".
     func accountType(_ raw: String) -> String {
         let fa = ["golden": "طلایی", "gold": "طلایی", "silver": "نقره‌ای", "bronze": "برنزی", "red": "قرمز", "free": "رایگان"]
-        return lang == .fa ? (fa[raw.lowercased()] ?? raw) : raw.prefix(1).uppercased() + raw.dropFirst()
+        let ar = ["golden": "ذهبي", "gold": "ذهبي", "silver": "فضي", "bronze": "برونزي", "red": "أحمر", "free": "مجاني"]
+        switch lang {
+        case .fa: return fa[raw.lowercased()] ?? raw
+        case .ar: return ar[raw.lowercased()] ?? raw
+        case .en: return raw.prefix(1).uppercased() + raw.dropFirst()
+        }
     }
 
     /// "Subscription until 2028-07-15 · 641 days left", in the calendar of the interface language.
@@ -85,7 +90,11 @@ struct Loc: Equatable {
 
     /// "S2 · E5" / "فصل ۲ · قسمت ۵"
     func episodeTag(season: Int, episode: String) -> String {
-        lang == .fa ? "فصل \(num(season)) · قسمت \(num(episode))" : "S\(season) · E\(episode)"
+        switch lang {
+        case .fa: return "فصل \(num(season)) · قسمت \(num(episode))"
+        case .ar: return "الموسم \(season) · الحلقة \(episode)"
+        case .en: return "S\(season) · E\(episode)"
+        }
     }
 
     static let en: [S: String] = [
@@ -188,5 +197,56 @@ struct Loc: Equatable {
         .director: "کارگردان", .writer: "نویسنده", .creator: "سازنده", .network: "شبکه",
         .country: "کشور", .originalLanguage: "زبان", .status: "وضعیت", .storyline: "داستان",
         .information: "اطلاعات",
+    ]
+
+    static let ar: [S: String] = [
+        .home: "الرئيسية", .search: "بحث", .browse: "تصفّح", .settings: "الإعدادات",
+        .movies: "أفلام", .series: "مسلسلات", .anime: "أنمي", .movie: "فيلم",
+        .signIn: "تسجيل الدخول", .scanTitle: "امسح الرمز بهاتفك", .step1: "افتح كاميرا الهاتف",
+        .step2: "امسح الرمز", .step3: "أكّد الدخول في 30nama.com", .orEnterCode: "أو افتح 30nama.com/auth وأدخل الرمز",
+        .waiting: "في انتظار المسح…", .expired: "انتهت صلاحية الرمز", .codeFailed: "تعذّر الحصول على رمز",
+        .guest: "المتابعة كضيف", .newCode: "رمز جديد", .welcome: "مرحبًا",
+        .loading: "جارٍ التحميل…", .error: "حدث خطأ ما", .tryAgain: "يُرجى المحاولة بعد قليل.",
+        .retry: "إعادة المحاولة", .noConnection: "تعذّر الاتصال بـ 30nama",
+        .continueWatching: "متابعة المشاهدة", .newReleases: "أحدث الإصدارات", .suggested: "مقترحات",
+        .top10: "أفضل 10", .featured: "مميّز",
+        .cloudRatings: "التقييمات في iCloud", .cloudSynced: "محدّثة", .cloudSyncing: "جارٍ المزامنة…",
+        .cloudSignedOut: "لم يُسجَّل الدخول إلى iCloud", .cloudFailed: "تعذّرت المزامنة",
+        .watchlist: "قائمة المشاهدة", .favorites: "المفضّلة", .yourTaste: "ذوقك", .howYouRate: "كيف تقيّم",
+        .subscriptionUntil: "الاشتراك حتى", .daysLeft: "يومًا متبقيًا",
+        .play: "تشغيل", .resume: "متابعة", .details: "التفاصيل", .episodes: "الحلقات", .season: "الموسم",
+        .seasonsCount: "مواسم", .episode: "الحلقة", .nowPlaying: "قيد التشغيل", .cast: "طاقم التمثيل",
+        .persianSub: "ترجمة فارسية", .minLeft: "دقيقة متبقية", .min: "دقيقة", .free: "مجاني", .soon: "قريبًا",
+        .loginToStream: "سجّل الدخول للمشاهدة وحفظ موضعك", .loginToWatch: "سجّل الدخول للمشاهدة",
+        .noStream: "لا يتوفر بث لهذا العنوان", .comingSoonNote: "قريبًا",
+        .popularNow: "الرائج الآن", .topResults: "النتائج", .nothingFor: "لا نتائج عن",
+        .searchPrompt: "أفلام، مسلسلات، أنمي",
+        .categories: "الفئات", .genres: "الأنواع", .newest: "الأحدث", .popular: "الأكثر رواجًا",
+        .updated: "المحدّثة", .results: "عنوانًا",
+        .account: "الحساب", .language: "اللغة", .signOut: "تسجيل الخروج", .signInQR: "تسجيل الدخول برمز QR",
+        .guestAccount: "ضيف", .expires: "نهاية الاشتراك", .accountType: "نوع الحساب",
+        .playback: "التشغيل", .display: "العرض", .about: "حول", .defaultSubs: "الترجمة الافتراضية",
+        .subSize: "حجم الترجمة", .autoplay: "تشغيل الحلقة التالية تلقائيًا", .quality: "جودة الفيديو",
+        .qualityBest: "الأعلى", .qualityAuto: "تلقائية", .reduceMotion: "تقليل الحركة",
+        .on: "تشغيل", .off: "إيقاف", .small: "صغير", .medium: "متوسط", .large: "كبير",
+        .sample: "هكذا ستظهر الترجمة.",
+        .profile: "ملفي", .yourRating: "تقييمك", .forYou: "مختارات لك",
+        .ratedCount: "تم تقييمها", .averageRating: "المتوسط",
+        .noRatingsYet: "لم تقيّم أي عنوان بعد",
+        .rateHint: "افتح عنوانًا وامنحه نجومًا. تقييماتك تحدّد ما نختاره لك.",
+        .startWithThese: "ابدأ بهذه",
+        .subColor: "لون الترجمة", .subBackground: "خلفية الترجمة",
+        .white: "أبيض", .yellow: "أصفر", .cyan: "سماوي", .green: "أخضر",
+        .bgNone: "بدون", .bgHalf: "أسود 50%", .bgSolid: "أسود", .bgBlurHalf: "ضبابي 50%", .bgBlur: "ضبابي",
+        .version: "الإصدار", .unofficial: "تطبيق غير رسمي لـ 30nama.com، وغير تابع لـ 30nama.",
+        .apiHost: "الخادم",
+        .skipIntro: "تخطّي المقدمة", .skipRecap: "تخطّي الملخص", .nextEpisode: "الحلقة التالية",
+        .subtitles: "الترجمة", .english: "الإنجليزية", .persian: "الفارسية",
+        .subFailed: "تعذّر تحميل الترجمة", .playError: "تعذّر التشغيل",
+        .signOutTitle: "تسجيل الخروج؟", .signOutBody: "ستحتاج إلى مسح رمز جديد لتسجيل الدخول مرة أخرى.",
+        .cancel: "إلغاء",
+        .director: "المخرج", .writer: "الكاتب", .creator: "المبتكر", .network: "الشبكة",
+        .country: "البلد", .originalLanguage: "اللغة", .status: "الحالة", .storyline: "القصة",
+        .information: "معلومات",
     ]
 }

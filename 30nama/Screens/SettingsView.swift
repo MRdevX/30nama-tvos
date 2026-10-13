@@ -13,8 +13,8 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 14) {
                     account
                     group(loc(.language)) {
-                        choice(loc(.language), value: app.settings.lang == .fa ? "فارسی" : "English") {
-                            app.update { $0.lang = $0.lang == .fa ? .en : .fa }
+                        choice(loc(.language), value: app.settings.lang.name) {
+                            app.update { $0.lang = next(after: $0.lang, in: Lang.allCases) }
                         }
                     }
                     group(loc(.playback)) {
@@ -87,7 +87,7 @@ struct SettingsView: View {
         group(loc(.account)) {
             if let user = app.user {
                 fact(loc(.account), user.name ?? "—")
-                if let type = user.type { fact(loc(.accountType), type) }
+                if let type = user.type { fact(loc(.accountType), loc.accountType(type)) }
                 if let expiry = user.expiry { fact(loc(.expires), loc.num(expiry)) }
                 Button { confirmingSignOut = true } label: {
                     Text(loc(.signOut)).font(.app(28, .medium))

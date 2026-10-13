@@ -1,8 +1,22 @@
 import Foundation
 
+/// The interface languages, in the order the language setting goes through them.
 enum Lang: String, CaseIterable {
-    case fa, en
-    var isRTL: Bool { self == .fa }
+    case en, ar, fa
+
+    var isRTL: Bool { self != .en }
+
+    /// What the language calls itself.
+    var name: String {
+        switch self {
+        case .en: return "English"
+        case .ar: return "العربية"
+        case .fa: return "فارسی"
+        }
+    }
+
+    /// The language to ask 30nama for titles and plots in. It has them in Persian and English only.
+    var catalogue: String { self == .fa ? "fa" : "en" }
 }
 
 // MARK: - Images

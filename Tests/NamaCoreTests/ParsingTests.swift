@@ -72,6 +72,7 @@ final class ParsingTests: XCTestCase {
         XCTAssertEqual(Fmt.runtime(minutes: 50, lang: .en), "50m")
         XCTAssertEqual(Fmt.runtime(minutes: 120, lang: .fa), "۲ ساعت")
         XCTAssertEqual(Fmt.runtime(minutes: 95, lang: .fa), "۱ ساعت و ۳۵ دقیقه")
+        XCTAssertEqual(Fmt.runtime(minutes: 95, lang: .ar), "1 س 35 د")
         XCTAssertNil(Fmt.runtime(minutes: 0, lang: .en))
         XCTAssertEqual(Fmt.persianDigits("S2 · E15"), "S۲ · E۱۵")
         XCTAssertEqual(Fmt.score(8.5), "8.5")
@@ -84,8 +85,14 @@ final class ParsingTests: XCTestCase {
         for key in S.allCases {
             XCTAssertNotNil(Loc.en[key], "missing English: \(key)")
             XCTAssertNotNil(Loc.fa[key], "missing Persian: \(key)")
+            XCTAssertNotNil(Loc.ar[key], "missing Arabic: \(key)")
         }
         XCTAssertEqual(Loc(lang: .fa).episodeTag(season: 2, episode: "5"), "فصل ۲ · قسمت ۵")
         XCTAssertEqual(Loc(lang: .en).episodeTag(season: 2, episode: "5"), "S2 · E5")
+        XCTAssertEqual(Loc(lang: .ar).episodeTag(season: 2, episode: "5"), "الموسم 2 · الحلقة 5")
+        XCTAssertEqual(Loc(lang: .ar)(.play), "تشغيل")
+        XCTAssertEqual(Lang.allCases, [.en, .ar, .fa], "the order the language setting steps through")
+        XCTAssertEqual(Lang.allCases.map(\.isRTL), [false, true, true])
+        XCTAssertEqual(Lang.allCases.map(\.catalogue), ["en", "en", "fa"], "30nama has no Arabic catalogue")
     }
 }
