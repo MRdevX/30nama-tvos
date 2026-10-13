@@ -129,6 +129,8 @@ struct RowButtonStyle: ButtonStyle {
 struct PosterArt: View {
     let post: Post
     var width: CGFloat = Theme.posterWidth
+    /// False keeps to the placeholder for now, for cards that are far out of sight.
+    var loads = true
 
     @Environment(\.loc) private var loc
 
@@ -142,7 +144,7 @@ struct PosterArt: View {
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
                 .padding(14)
-            RemoteImage(url: post.poster.url(forWidth: width * 1.1), blurhash: post.poster.blurhash, maxPixel: Int(width * 1.5 * UIScreen.main.scale))
+            RemoteImage(url: loads ? post.poster.url(forWidth: width * 1.1) : nil, blurhash: post.poster.blurhash, maxPixel: Int(width * 1.5 * UIScreen.main.scale))
         }
         .frame(width: width, height: width * 1.5)
         .overlay(alignment: .topLeading) {
@@ -178,13 +180,14 @@ struct PosterLink: View {
     var width: CGFloat = Theme.posterWidth
     /// Shows the title under the poster (grids). Rows leave it to the billboard.
     var titled = false
+    var loads = true
 
     @Environment(\.loc) private var loc
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
             NavigationLink(value: Route.details(PostRef(post))) {
-                PosterArt(post: post, width: width)
+                PosterArt(post: post, width: width, loads: loads)
             }
             .buttonStyle(CardButtonStyle(glow: post.tint))
             // Outside the button so the caption does not scale with the poster.

@@ -165,6 +165,20 @@ final class ModelTests: XCTestCase {
         XCTAssertEqual(Post.continueList(nested).first?.resume?.time, 60)
     }
 
+    func testContinueWatchingAsServedToASubscriber() throws {
+        // The shape of one entry of a live `continue_watching` response.
+        let feed = JSON(["posts": [[
+            "id": 283405, "title": ["english": "Reacher 2022"], "options": ["is_series": true],
+            "data": ["display_time": "00:17:30", "episode": 4, "episode_title": "فصل 3 - قسمت 4", "id": 283405, "progress": "35.9836", "season": 3, "time": 1050],
+        ]]] as [String: Any])
+        let resume = try XCTUnwrap(Post.continueList(feed).first?.resume)
+        XCTAssertEqual(resume.season, 3)
+        XCTAssertEqual(resume.episode, "4")
+        XCTAssertEqual(resume.time, 1050)
+        XCTAssertEqual(resume.progress, 0.359836, accuracy: 0.0001)
+        XCTAssertEqual(resume.remainingMinutes, 31, "the length is worked out from the position and the percentage")
+    }
+
     func testUserShapes() {
         let bare = User(JSON(["user_session": "abc", "user_name": "sara", "user_expire": 1_800_000_000, "user_id": 12] as [String: Any]))
         XCTAssertEqual(bare?.token, "abc")

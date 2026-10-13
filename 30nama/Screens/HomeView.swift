@@ -22,6 +22,8 @@ struct HomeView: View {
     /// 0...1: how far through its turn the current hero is.
     @State private var heroProgress = 0.0
     @State private var visible = false
+    /// Rows that have had focus, whose cards beyond the first screenful may now load their posters.
+    @State private var opened: Set<String> = []
     @FocusState private var focus: Target?
 
     enum Target: Hashable {
@@ -103,6 +105,7 @@ struct HomeView: View {
             lastInput = Date()
             switch target {
             case .card(let row, let id):
+                opened.insert(row)
                 if let section = rows.first(where: { $0.key == row }),
                    let index = section.posts.firstIndex(where: { $0.id == id }) {
                     browsing = Selection(row: row, post: section.posts[index], rank: index + 1)
@@ -279,9 +282,13 @@ struct HomeView: View {
                 .frame(height: Layout.headerHeight)
                 .padding(.leading, Theme.edge)
             ScrollView(.horizontal) {
-                LazyHStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) {
+                // Not a lazy stack: a row that is off screen makes only its first few cards, and
+                // moving down onto it from further along lands focus on the gap where a card should
+                // be, with nothing to select. Every card exists from the start; only the posters
+                // past the first screenful wait until the row has had focus.
+                HStack(alignment: .top, spacing: section.key == "top_10" ? 8 : 24) {
                     ForEach(Array(section.posts.enumerated()), id: \.element.id) { index, post in
-                        card(post, in: section, rank: index + 1)
+                        card(post, in: section, rank: index + 1, loads: index < 10 || opened.contains(section.key))
                             .focused($focus, equals: .card(row: section.key, id: post.id))
                     }
                 }
@@ -296,7 +303,7 @@ struct HomeView: View {
     }
 
     @ViewBuilder
-    private func card(_ post: Post, in section: HomeSection, rank: Int) -> some View {
+    private func card(_ post: Post, in section: HomeSection, rank: Int, loads: Bool) -> some View {
         switch section.key {
         case "continue":
             NavigationLink(value: Route.details(PostRef(post))) {
@@ -310,10 +317,10 @@ struct HomeView: View {
                     .foregroundStyle(Theme.text1.opacity(browsing?.post == post && browsing?.row == "top_10" ? 0.9 : 0.22))
                     .frame(height: 300)
                     .environment(\.layoutDirection, .leftToRight)
-                PosterLink(post: post)
+                PosterLink(post: post, loads: loads)
             }
         default:
-            PosterLink(post: post)
+            PosterLink(post: post, loads: loads)
         }
     }
 

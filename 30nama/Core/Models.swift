@@ -168,13 +168,19 @@ struct Post: Identifiable, Hashable {
     }
 
     /// The "continue watching" feed: like `list`, but each post carries its progress, which sits
-    /// either inside the post, next to it in a wrapper, or flat on the entry itself.
+    /// inside the post (as `continue_watching`, or as `data`, which is what the server sends a
+    /// subscriber), next to it in a wrapper, or flat on the entry itself.
     static func continueList(_ j: JSON) -> [Post] {
         var seen = Set<Int>()
         return rawList(j).compactMap { x in
             let inner = x["post"].isNull ? x : x["post"]
             guard var p = Post(inner), seen.insert(p.id).inserted else { return nil }
-            p.resume = ContinueWatching(x["continue_watching"]) ?? p.resume ?? ContinueWatching(x)
+            p.resume = ContinueWatching(x["continue_watching"]) ?? p.resume ?? ContinueWatching(inner["data"]) ?? ContinueWatching(x)
+            // The feed gives a position and a percentage to four places, but no length: work it out.
+            if var resume = p.resume, resume.duration <= 0, resume.time > 0, let percent = resume.reportedPercent, percent > 0 {
+                resume.duration = resume.time * 100 / percent
+                p.resume = resume
+            }
             return p
         }
     }
