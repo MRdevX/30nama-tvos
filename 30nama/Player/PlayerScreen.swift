@@ -42,6 +42,8 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
     private var statusObservation: NSKeyValueObservation?
     private var endObserver: NSObjectProtocol?
     private var heartbeat: Timer?
+    /// The last position reported for the current item, so the same one is not sent twice.
+    private var reportedTime = 0
     private var closed = false
 
     private var subtitleLanguage: String
@@ -121,6 +123,7 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
         guard items.indices.contains(i) else { return close() }
         report()
         index = i
+        reportedTime = 0
         guard let quality = current.quality(preferAdaptive: app.settings.preferAdaptive) else {
             app.showToast(loc(.noStream))
             return close()
@@ -180,17 +183,23 @@ final class PlayerEngine: NSObject, AVPlayerViewControllerDelegate {
     // MARK: Progress
 
     /// Tells the server where playback is, which drives "continue watching" on every device.
+    ///
+    /// The position goes up in steps of thirty seconds, which is how the 30nama website reports
+    /// it. The server accepts any other position just the same and then does not record it.
     private func report() {
         guard app.isLoggedIn, items.indices.contains(index), player.currentItem != nil else { return }
-        let time = player.currentTime().seconds
-        guard time.isFinite, time > 1 else { return }
+        let seconds = player.currentTime().seconds
+        guard seconds.isFinite else { return }
+        let time = Int(seconds) / 30 * 30
+        guard time > 0, time != reportedTime else { return }
+        reportedTime = time
         let duration = player.currentItem?.duration.seconds ?? 0
         let item = current
         let params = [
             "post_id": item.postID ?? String(post.id),
             "file_id": item.fileID,
             "user_id": app.user?.id ?? "",
-            "time": String(Int(time)),
+            "time": String(time),
             "duration": String(duration.isFinite ? Int(duration) : 0),
             "token": item.token,
         ]

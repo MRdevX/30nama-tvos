@@ -259,8 +259,8 @@ actor APIClient {
         } catch {
             throw APIError.transient("\(action): \(error.localizedDescription)", retryAfter: 0)
         }
-        // A progress report is answered with an empty 204: accepted, with nothing to say.
-        if response.statusCode == 204 { return Envelope(success: true, message: nil, result: .null) }
+        // A progress report is answered with nothing at all: accepted, with nothing to say.
+        if data.isEmpty, (200..<300).contains(response.statusCode) { return Envelope(success: true, message: nil, result: .null) }
         guard let json = try? JSON.parse(data), json.object != nil else {
             // Cloudflare answers rate limiting and outages with HTML or plain text.
             let retryAfter = min(Double(response.value(forHTTPHeaderField: "Retry-After") ?? "") ?? 0, 10)
